@@ -140,7 +140,7 @@ function populateTableInfo(objs, tableHead) {
     "</td><td>" +
     objs[i].Members.length +
     "</td><td>" +
-    objs[i].MaxTeamMembers +
+    (objs[i].MaxTeamMembers - objs[i].Members.length) +
     "</td><td>" +
     objs[i].Region +
     "</td><td>" +
