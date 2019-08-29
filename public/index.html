@@ -1,0 +1,138 @@
+<!--Main Home Page-->
+<!--Warning for validation will be given for article not having head. This is intentional, see below for more info.-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Class's</title>
+    <meta charset="utf-8" />
+
+    <!-- FontAwesome Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/dbcee74e1c.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!--FavICON-->
+    <link rel="shortcut icon" href="images/esportsIcon.jpg" />
+
+    <!--External Style Sheet-->
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  </head>
+
+    <body class="bg-info">
+        <!-- Header / Navigation section-->
+    <nav>
+        <div
+          class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 text-light bg-dark"
+        >
+          <div class="h5 my-0 ml-5 mr-md-auto font-weight-normal">
+            <a class="btn btn-outline-primary text-light" href="index.html">
+                Home
+            </a>
+            <a class="btn btn-outline-primary text-light ml-5" href="#">
+                Manager
+            </a>
+          </div>
+          <div class="col-6 pl-5 h4">HartCode's eSports</div>
+          <div class="mr-5 pl-3">
+            <!-- Dropdown Menu bar that list various other sections of the page-->
+            <div
+              class="dropdown show bg-dark d-inline text-light btn-outline-primary"
+            >
+              <a
+                class="btn text-light bg-dark btn-outline-primary dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Menu
+              </a>
+              <div
+                class="dropdown-menu bg-dark text-light btn-outline-primary"
+                aria-labelledby="dropdownMenuLink"
+              >
+                <a class="dropdown-item btn text-light mask" href="index.html">
+                    Home
+                </a>
+                <a class="dropdown-item btn text-light mask" href="#">
+                    Search Teams
+                </a>
+                <a class="dropdown-item btn text-light mask" href="#">
+                    Add a Team
+                </a>
+                <a class="dropdown-item btn text-light mask" href="#">
+                    About US
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+        <figure>
+            <img src="images/eSports.jpg" alt="eSports" id="esports" >
+        </figure>
+
+        <main class="text-light">
+            <section id="homePage">
+                <h1 class="text-center">HartCode's eSports</h1>
+                <p class="offset-md-3" id="homeText">HartCode eSports offers several different leagues. These leagues change based upon the different seasons. Currently we have the following leagues available: WoW Spring EU Cup, WoW Spring NA Cup, WoW Spring Global Cup, World of Warcraft Arena, Overwatch, Call of Duty, League of Legends NA Qualifiers, League of Legends EU Qualifiers, Dota 2 International. </p>
+                <h2 class="offset-md-5"> New Spa Offers</h2>
+                <div class="row justify-content-center">
+                    <div class="column" id="hottub">
+                            
+                            <img src="images/eSportGraphA.jpg" class="pl-5" alt="graphA" id="graphA">
+                            
+                        <p class="picText">New Hot Tubs- These new Hot Tubs allow you to relax with modern day conviences. Such as the ability to watch the newest Critical Roll episode for DnD.</p>
+                    </div>
+                    <div class="column offset-md-1" id="sauna">
+                        <img src="images/eSportGraphB.jpg" class="pl-5" alt="graphB" id="graphB">
+                        <p class="picText">New Sauna's-These saunas allow you to get your sweat on while enjoying our latest view. Gaze out into our amazing lake as you watches the sun set.</p>
+                    </div>
+                    <div class="column pl-5" id="hydro">
+                        <img src="images/eSportGraphC.jpg" class="pl-5" alt="graphC" id="graphC">
+                        <p class="picText">New Hydro Massage - The HydroMassage bed is a convenient, dry, full body massage with the use of pressurized water. Simply lie down in the open design bed, fully clothed, and feel the immediate benefits of the traveling jet system, which delivers an “all sides” body massage.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+      
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+      
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+      </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+        crossorigin="anonymous"
+        ></script>
+        <script src="scripts/index.js"></script>
+       <!-- End Body -->    
+    </body>    
+</html>

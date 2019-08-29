@@ -1,0 +1,99 @@
+[
+	{
+		"TeamId": 1,
+		"TeamName": "Team Liquid",
+		"League": "dota2",
+		"ManagerName": "Roman Paley",
+		"ManagerPhone": "555-123-4567",
+		"ManagerEmail": "Roman.Paley@fake.com",
+		"MaxTeamMembers": 5,
+		"MinMemberAge": 0,
+		"MaxMemberAge": 100,
+        "TeamGender": "Any",
+        "Region": "All",
+		"Members": [
+			{
+				"MemberId": 1,
+				"Email": "nitr0@dota2.com",
+				"MemberName": "nitr0",
+				"ContactName": "Nicholas Cannella",
+				"Age": 24,
+				"Gender": "Male",
+                "Phone": "555-214-5475",
+                "Region": "EU"
+			},
+			{
+				"MemberId": 2,
+				"Email": "EliGE@dota2.com",
+				"MemberName": "EliGE",
+				"ContactName": "Jonathan Jablonowski",
+				"Age": 21,
+				"Gender": "Male",
+				"Phone": "741-123-9874",
+                "Region": "EU"
+			},
+			{
+				"MemberId": 3,
+				"Email": "MinD_ContRoL@aol.com",
+				"MemberName": "MinD_ContRoL",
+				"ContactName": "Ivan Borislavov",
+				"Age": 27,
+				"Gender": "Female",
+				"Phone": "852-456-7531",
+                "Region": "US"
+			},
+			{
+				"MemberId": 4,
+				"Email": "Natalie214@aol.com",
+				"MemberName": "Elisha Aiden",
+				"ContactName": "Natalie Plyers",
+				"Age": 10,
+				"Gender": "Male",
+				"Phone": "817-555-5454",
+                "Region": "US"
+			},
+			{
+				"MemberId": 5,
+				"Email": "Natalie214@aol.com",
+				"MemberName": "Elisha Aiden",
+				"ContactName": "Natalie Plyers",
+				"Age": 10,
+				"Gender": "Male",
+				"Phone": "817-555-5454",
+                "Region": "EU"
+			}
+		]
+	},
+	{
+		"TeamId": 2,
+		"TeamName": "Wildlings",
+		"League": "dota2",
+		"ManagerName": "Natalie Plyers",
+		"ManagerPhone": "817-555-5454",
+		"ManagerEmail": "Natalie214@aol.com",
+		"MinAge": 0,
+		"MaxAge": 17,
+		"MaxTeamMembers": 6,
+		"TeamGender": "Male",
+		"Members": [
+			{
+				"MemberId": 4,
+				"Email": "Natalie214@aol.com",
+				"MemberName": "Elisha Plyers",
+				"ContactName": "Natalie Plyers",
+				"Age": 10,
+				"Gender": "Male",
+				"Phone": "817-555-5454"
+			},
+			{
+				"MemberId": 5,
+				"Email": "Natalie214@aol.com",
+				"MemberName": "Ezra Plyers",
+				"ContactName": "Natalie Plyers",
+				"Age": 15,
+				"Gender": "Male",
+				"Phone": "817-555-5454"
+			}
+		]
+	}
+]
