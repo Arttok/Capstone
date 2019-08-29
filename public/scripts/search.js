@@ -1,7 +1,8 @@
 $(function() 
 {
+  $("#errorimg").hide()
   let objs;
-  let tableHead = ["League", "Team Name", "# of Players", "Spots Left", "Region", "Details"];
+  let tableHead = ["League", "Team Name", "Max Members", "Spots Left", "Region", "Details"];
   let leagueSelect;
 
   //getting the leagues info fomr leagues.json.
@@ -23,7 +24,7 @@ $(function()
             // parameter named data
             // take a few minutes to examine the attached .json file
             objs = teams;
-            populateTableInfo(objs, tableHead);
+            populateTableInfo(objs, tableHead, leagueSelect);
         })
     })
 
@@ -50,8 +51,6 @@ function populateDropDownInfo(leagueSelect)
           "</option>"
       );
     }
-
-    console.log(leagueSelect)
 }
 
 
@@ -63,7 +62,7 @@ function populateDropDownInfo(leagueSelect)
  *@param ---tBody---table body.
  *@param ---catatext--- text of dropdown, that is selected.
  */
-function populateTableInfo(objs, tableHead) {
+function populateTableInfo(objs, tableHead, leagueSelect) {
     $("#teamsList").empty();
     let thead = $("<thead>");
     $("#teamsList").append(thead);
@@ -101,14 +100,20 @@ function populateTableInfo(objs, tableHead) {
                     generateMarkUp(objs, i);         
                 }
         }
-    } else if  (catatext == "North America"){
-        for (let i = 0; i < objs.length; i++) 
-        {
-            if (objs[i].Region == "NA") 
-                {
-                    generateMarkUp(objs, i);         
-                }
-        }
+    } else if  (catatext == "Female Only"){
+      for (let i = 0; i < objs.length; i++) 
+      {
+          if (objs[i].TeamGender == "Female") 
+              {
+                  generateMarkUp(objs, i);         
+              }
+      }
+    }else if  (catatext == "D&D adventurers league"){
+      $("#DnD").show();
+      $("#DnD").html(leagueSelect[9].Description);
+      $("#teamsList").hide();
+      $("#errorimg").show()
+      $("#errorimg").attr("src","images/errorpic.jpg");
     } else if  (catatext == "European"){
         for (let i = 0; i < objs.length; i++) 
         {
@@ -138,7 +143,7 @@ function populateTableInfo(objs, tableHead) {
     "</td><td>" +
     objs[i].TeamName +
     "</td><td>" +
-    objs[i].Members.length +
+    objs[i].MaxTeamMembers +
     "</td><td>" +
     (objs[i].MaxTeamMembers - objs[i].Members.length) +
     "</td><td>" +
