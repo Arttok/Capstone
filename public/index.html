@@ -1,0 +1,146 @@
+<!--Main Home Page-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Class's</title>
+    <meta charset="utf-8" />
+
+    <!-- FontAwesome Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/dbcee74e1c.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!--FavICON-->
+    <link rel="shortcut icon" href="images/esportsIcon.jpg" />
+
+    <!--External Style Sheet-->
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  </head>
+
+    <body class="bg-info">
+        <!-- Header / Navigation section-->
+        <nav>
+            <div
+            class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 text-light bg-dark"
+            >
+            <div class="h5 my-0 ml-5 mr-md-auto font-weight-normal">
+                <a class="btn btn-outline-primary text-light" href="index.html">
+                    Home
+                </a>
+                <a class="btn btn-outline-primary text-light ml-5" href="#">
+                    Manager
+                </a>
+            </div>
+            <div class="col-5 ml-0 pl-0 h4">Hart-eSports</div>
+            <div class="mr-5 pl-3">
+                <!-- Dropdown Menu bar that list various other sections of the page-->
+                <div
+                class="dropdown show bg-dark d-inline text-light btn-outline-primary"
+                >
+                <a
+                    class="btn text-light bg-dark btn-outline-primary dropdown-toggle"
+                    href="#"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    Menu
+                </a>
+                <div
+                    class="dropdown-menu bg-dark text-light btn-outline-primary"
+                    aria-labelledby="dropdownMenuLink"
+                >
+                    <a class="dropdown-item btn text-light mask" href="index.html">
+                        Home
+                    </a>
+                    <a class="dropdown-item btn text-light mask" href="#">
+                        Search Teams
+                    </a>
+                    <a class="dropdown-item btn text-light mask" href="#">
+                        Add a Team
+                    </a>
+                    <a class="dropdown-item btn text-light mask" href="#">
+                        About US
+                    </a>
+                </div>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+        <figure>
+            <img src="images/eSports.jpg" alt="eSports" id="esports" >
+        </figure>
+
+        <main class="text-light">
+            <section id="homePage">
+                <h1 class="text-center">Hart-eSports</h1>
+                <p class="offset-md-3" id="homeText">HartCode eSports offers several different leagues. These leagues change based upon the different seasons. Currently we have the following leagues available: WoW Spring EU Cup, WoW Spring NA Cup, WoW Spring Global Cup, World of Warcraft Arena, Overwatch, Call of Duty, League of Legends NA Qualifiers, League of Legends EU Qualifiers, Dota 2 International. If you want to find more indepth rules about each league, please visit the <a href="#" class="text-warning">About Me</a> section. There you can find out all of the rules and regulaitons of each league.</p>
+                <h2 class="offset-md-4 pl-5"> Why is eSports important?</h2>
+                <div class="row justify-content-center">
+                    <div class="column">
+                            <!--Graph A These are purposly indented like this to show that there is an image, and then the p text goes right after it.-->
+                            <img src="images/eSportGraphA.jpg" class="pl-5" alt="eSports Audience Growth 2016 - 2020" id="graphA">
+                        <!--Graph A Text-->
+                        <p class="picText pt-1">As you can see, year over year eSports Audience Growth has had a termendous increase. In 2019 the eSports Audience Growth increased to over 454 million. This is a 17.92% increase from 385 million in 2018. It is expected to keep up this increase to over 518 million in 2020, a 14.1% increase.                             
+                        </p>
+                    </div>
+                    <div class="column offset-md-1">
+                            <!--Graph B-->
+                            <img src="images/eSportGraphB.jpg" class="pl-5" alt="ESports Viewers in the US" id="graphB">
+                        <!--Graph B Text-->
+                        <p class="picText">According to Tencent, 128million people watched the League of Legends(LoL) invitaitonal in 2018. 60 million people watched PUBG Global Invitaitonal, and only 103 million people watch the Super Bowl. Only 28 million people watched the MLB World Series 2017 (Game 7) and 24 million viewers for NBA Finals 2017 (Game 5).
+                        </p>
+                    </div>
+                    <div class="column pl-5">
+                            <!--Graph C-->
+                            <img src="images/eSportGraphC.jpg" alt="ESports 2019 Revenue Streams" id="graphC">
+                        <!--Graph C-->
+                        <p class="picText pt-2">Esports will bring in more than $1 billion in revenue worldwide during 2019, according to a recent report from the Newzoo analyst group. That would be a 26.4% boost from 2018, with the growth largely driven by media rights deals, sponsorships, and advertising sales.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="container">
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" src="#" alt="#" id="img01">
+
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption"></div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+        crossorigin="anonymous"
+        ></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+        crossorigin="anonymous"
+        ></script>
+        <script src="scripts/index.js"></script>
+       <!-- End Body -->    
+    </body>    
+</html>
