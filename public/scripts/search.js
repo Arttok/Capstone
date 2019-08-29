@@ -92,10 +92,10 @@ function populateTableInfo(objs, tableHead, leagueSelect) {
       {
         generateMarkUp(objs, i);
       }
-    } else if  (catatext == "Female Only"){
+    } else if  (catatext == "Male Only"){
         for (let i = 0; i < objs.length; i++) 
         {
-            if (objs[i].TeamGender == "Female") 
+            if (objs[i].TeamGender == "Male") 
                 {
                     generateMarkUp(objs, i);         
                 }
@@ -108,20 +108,37 @@ function populateTableInfo(objs, tableHead, leagueSelect) {
                   generateMarkUp(objs, i);         
               }
       }
-    }else if  (catatext == "D&D adventurers league"){
+    } else if  (catatext == "North America"){
+        for (let i = 0; i < objs.length; i++) 
+        {
+            if (objs[i].Region == "NA") 
+                {
+                    generateMarkUp(objs, i);          
+                }
+        }
+    } else if  (catatext == "European"){
+      for (let i = 0; i < objs.length; i++) 
+      {
+          if (objs[i].Region == "EU") 
+              {
+                  generateMarkUp(objs, i);          
+              }
+      }
+    } else if  (catatext == "D&D adventurers league"){
       $("#DnD").show();
       $("#DnD").html(leagueSelect[9].Description);
       $("#teamsList").hide();
       $("#errorimg").show()
       $("#errorimg").attr("src","images/errorpic.jpg");
-    } else if  (catatext == "European"){
-        for (let i = 0; i < objs.length; i++) 
-        {
-            if (objs[i].Region == "EU") 
-                {
-                    generateMarkUp(objs, i);          
-                }
-        }
+
+      var delay = 5000; 
+      setTimeout(function()
+      { 
+        text = $(this).find('option:selected').text()
+        text.prop('disabled',true);
+        window.location = "index.html";
+      }, delay);  
+
     } else { 
     //if the user selects any of the other options from the drop down besides all or choose option.
       for (let i = 0; i < objs.length; i++) 

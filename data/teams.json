@@ -9,7 +9,7 @@
 		"MaxTeamMembers": 5,
 		"MinMemberAge": 0,
 		"MaxMemberAge": 100,
-        "TeamGender": "Any",
+        "TeamGender": "Male",
         "Region": "NA",
 		"Members": [
 			{
