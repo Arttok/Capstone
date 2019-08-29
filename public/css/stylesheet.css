@@ -3,13 +3,6 @@
     float: left;
 }
 
-
-.cardStyle 
-{
-    margin-top: -40px;
-    height: 425px;
-}
-
 .btn:hover
 {
     background-color: blue;
@@ -30,6 +23,10 @@ body
     overflow-x: hidden;
 }
 
+#esports
+{
+    width: 100%;
+}
 
 
 /*Modal Styles */
