@@ -1,4 +1,4 @@
 [
-    {"Name": "European", "code": "EU"},
-    {"Name": "North America", "code": "NA"}
+    {"Name": "European", "Code": "EU"},
+    {"Name": "North America", "Code": "NA"}
 ]

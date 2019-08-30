@@ -376,14 +376,14 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
         Region: req.body.region
     };
 
-    //console.log("Performing team validation...")
+    console.log("Performing team validation...")
     if (! isValidTeam(team))
     {
-        //console.log("Invalid  data!")
+        console.log("Invalid  data!")
 		res.status(400).send("Bad Request - Incorrect or Missing Data");
 		return;      
     }
-    //console.log("Valid data!")
+    console.log("Valid data!")
 
     let data = fs.readFileSync( __dirname + "/data/teams.json", "utf8");
     data = JSON.parse( data );
@@ -525,6 +525,12 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		return;       
     }
 
+    if (match.Region != "Any" && member.Region != match.Region)
+    {
+        res.status(409).send("Member's Region does not conform to team Region rules");
+		return;       
+    }
+
     // add the team
     match.Members[match.Members.length] = member;
 
@@ -549,7 +555,8 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		ContactName: req.body.contactname,
 		Age: Number(req.body.age),
         Gender: req.body.gender,
-        Phone: req.body.phone
+        Phone: req.body.phone,
+        Region: req.body.region
     };
 
     //console.log("Performing member validation...")
@@ -587,6 +594,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     match.Age = Number(req.body.age);
     match.Gender = req.body.gender;
     match.Phone = req.body.phone;
+    match.Region = req.body.region;
 
     // make sure edit doesn't violate team rules
 
@@ -600,6 +608,12 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     {
         res.status(409).send("Member's new gender does not conform to team gender rules");
 		return;       
+    }
+    
+    if (team.Region != "Any" && match.Region != team.Region) 
+    {
+        res.status(409).send("Member's new Region does not conform to team Region rules");
+        return true;  // found a conflict!
     }
 
     fs.writeFileSync(__dirname + "/data/teams.json", JSON.stringify(data));

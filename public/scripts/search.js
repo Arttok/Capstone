@@ -14,8 +14,8 @@ $(function()
   let regionsSelect;
   $.getJSON("/api/regions", function(regions) 
   {
-  // the returned data is available in an "already parsed"
-  // parameter named data
+  // the returned regions is available in an "already parsed"
+  // parameter named regions
   // take a few minutes to examine the attached .json file
     regionsSelect = regions;
     populateDropDownRegion(regionsSelect);
@@ -24,8 +24,8 @@ $(function()
   //getting the leagues info fomr leagues.json.
   $.getJSON("/api/leagues", function(leagues) 
   {
-    // the returned data is available in an "already parsed"
-    // parameter named data
+    // the returned leagues is available in an "already parsed"
+    // parameter named leagues
     // take a few minutes to examine the attached .json file
     leagueSelect = leagues;
     populateDropDownInfo(leagueSelect);
@@ -36,8 +36,8 @@ $(function()
     {
         $.getJSON("/api/teams", function(teams) 
         {
-            // the returned data is available in an "already parsed"
-            // parameter named data
+            // the returned teams is available in an "already parsed"
+            // parameter named teams
             // take a few minutes to examine the attached .json file
             objs = teams;
             populateTableInfo(objs, tableHead, leagueSelect);
