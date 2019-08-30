@@ -70,7 +70,7 @@
 
     <!--Main section of the page. Has the menu bar as well as table that is generated via JS-->
     <main>
-      <form class="col-12" id="teamInfo">
+      <form class="col-12 pb-3" id="teamInfo">
         <!--Should be Post but not due to github / live server reasons.-->
         <div class="col-12">
           <div class="text-center">
@@ -90,9 +90,9 @@
                 <tr class="instrYes">
                   <th class="text-light">League</th>
                   <td>
-                    <select name="leaguecode" id="leaguecode">
+                    <select class="d-inline-block" name="leaguecode" id="leaguecode">
                     </select> 
-                  </td>
+                  </td> 
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Manager Name</th>
@@ -141,6 +141,7 @@
                   <td id="regionholder">
                     <select type="text" name="region" id="region">
                     </select>
+                    <p class="d-inline-block text-light">Options are based upon League.</p>
                   </td>
                 </tr>
               </table>
@@ -161,12 +162,11 @@
             >
               Cancel
             </button>
-            <a
-              href=""
+            <button
               class="btn btn-lg btn-secondary col-1 offset-md-1"
-              id="register"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
-              Register
-          </a>
+              id="update"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
+              Update
+              </button>
           </div>
         </div>
       </form>

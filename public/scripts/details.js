@@ -46,10 +46,10 @@ $(function()
         $("#maxteammembers").val(leaguesSelect[i].MaxTeamMembers);            
       }   
     }
-  })
 
-  $.getJSON("/api/regions", function(region) 
-  {
+    $.getJSON("/api/regions", function(region) 
+    {
+    console.log(leaguesSelect);
     regionSelect = region
     createLeagueTable(regionSelect, leaguesSelect);
 
@@ -57,7 +57,37 @@ $(function()
     {
       createLeagueTable(regionSelect, leaguesSelect);
     }); 
+
+
+  })
+});
+
+
+  $("#update").click(function() 
+  {
+    console.log($("#teamInfo").serialize())
+    let isok = validateForm();
+      if (isok == false)
+      {
+        return false;
+      }
+      $.ajax(
+      {
+        url: "/api/teams",
+        data: "teamid=" + TeamId + "&" + $("#teamInfo").serialize(),
+        method: 'PUT',
+        success: function() {
+          alert("Team has been updated");
+          document.location.href = "teamsearch.html";
+      }
+    });
+  })
+
+  $("#reset").click(function() 
+  {
+      $('#courseInfo')[0].reset();
   });
+
 })
 
 
@@ -144,7 +174,8 @@ function showPlayers(objs)
   } else {
     let tBody = $("<tbody class= text-light>");
     $("#players").append(tBody);
-    for (let i = 0; i < objs.Members.length; i++) {
+    for (let i = 0; i < objs.Members.length; i++) 
+    {
       let markup =
         "<tr><td name=membername" + [i] + ">" +
         objs.Members[i].MemberName +
@@ -162,26 +193,64 @@ function showPlayers(objs)
         '<input type="button" id=' + [i] + ' class="delete" value="Unregister"/>' +
         "</td></tr>";
       $("#players tbody").append(markup);
-
-      
-      //on delete click, delete specific student.
-      $("#" + [i]).click(function(){
-        result = window.confirm("Click Ok to Remove Student from the class.");
-        if (result == true)
-        {
-          $.ajax({
-            url: "/api/teams/:id",
-            type: 'post',
-            data: 
-            {
-              "id": objs.Member[i].MemberId,
-            },
-            success: function() {
-              document.location.href = "details.html?id=" + objs.CourseId + "&instr=" + $.urlParam('instr');
-            }
-          });
-        }
-      });
-    }
+    };
   }
+}
+
+
+function validateForm()
+{
+    let errMsg = [];
+
+    $.getJSON("/api/teams/", function(classes) 
+    {
+        // the returned data is available in an "already parsed"
+        // parameter named data
+        // take a few minutes to examine the attached .json file
+        objs = classes;
+        for (let i = 0; i < objs.length; i++)
+        {
+            if ($("#teamname").val().trim() == objs[i].TeamName)//validation for courseID
+            {
+                errMsg[errMsg.length] = "Team Name is already in use.";
+            }
+        }
+
+        for(let i=0; i < errMsg.length; i++)
+        {
+            $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
+        }
+    });
+    if ($("#leaguecode").val().trim() == "")//validation for title
+    {
+        errMsg[errMsg.length] = "League is required";
+    }
+    if ($("#managername").val().trim() == "")//validation for title
+    {
+        errMsg[errMsg.length] = "Manager Name is required";
+    }
+    if ($("#managerphone").val().trim() == "") //validation for location
+    {
+        errMsg[errMsg.length] = "Manager Phone is required";
+    }
+    let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if (email.test($("#manageremail").val()) == false) //validation for start & end date.
+    {
+        errMsg[errMsg.length] = "Manager Email must be valid";
+    }
+    if ($("#maxteammembers").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Max Team Members needs to have a value.";
+    }
+    if ($("#minmemberage").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Min Member Age is required";
+    }
+
+    if (errMsg.length == 0)
+    {
+        return true;
+    }
+    $("#ulMsg").empty();//this is for msgDiv not 
+    return false;
 }

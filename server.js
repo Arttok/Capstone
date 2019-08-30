@@ -376,14 +376,14 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
         Region: req.body.region
     };
 
-    //console.log("Performing team validation...")
+    console.log("Performing team validation...")
     if (! isValidTeam(team))
     {
-        //console.log("Invalid  data!")
+        console.log("Invalid  data!")
 		res.status(400).send("Bad Request - Incorrect or Missing Data");
 		return;      
     }
-    //console.log("Valid data!")
+    console.log("Valid data!")
 
     let data = fs.readFileSync( __dirname + "/data/teams.json", "utf8");
     data = JSON.parse( data );
