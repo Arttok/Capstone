@@ -525,6 +525,12 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		return;       
     }
 
+    if (match.Region != "Any" && member.Region != match.Region)
+    {
+        res.status(409).send("Member's Region does not conform to team Region rules");
+		return;       
+    }
+
     // add the team
     match.Members[match.Members.length] = member;
 
