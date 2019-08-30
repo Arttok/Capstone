@@ -53,11 +53,5 @@
 		"Code": "Dota2",
         "Description": "This league is specifically for the Dota 2 International. All regions are allowed.",
         "Region": "All"
-	},
-	{
-		"Name": "D&D adventurers league",
-		"Code": "D&D",
-        "Description": "Wrong, sir! Wrong! Under section 37B of the contract signed by him, it states quite clearly that all offers shall become null and void if - and you can read it for yourself in this photostatic copy - 'I, the undersigned, shall forfeit all rights, privileges, and licenses herein and herein contained,' et cetera, et cetera... 'Fax mentis, incendium gloria cultum,' et cetera, et cetera... Memo bis punitor delicatum! It's all there! Black and white, clear as crystal! You tried to reference D&D! You picked the D&D option, which now has to be unselected and disabled, so you get... NOTHING!!! You lose! GOOD DAY, SIR! ",
-        "Region": "All"
 	}
 ]

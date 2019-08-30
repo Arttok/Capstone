@@ -4,6 +4,22 @@ $(function()
   let objs;
   let tableHead = ["League", "Team Name", "Max Members", "Spots Left", "Region", "Details"];
   let leagueSelect;
+  console.log(sessionStorage.error)
+  if (sessionStorage.error == "true")
+  {
+    $("#DnD").prop("disabled", true);
+  }
+  
+  //Populates dropdown with info from the different regions.
+  let regionsSelect;
+  $.getJSON("/api/regions", function(regions) 
+  {
+  // the returned data is available in an "already parsed"
+  // parameter named data
+  // take a few minutes to examine the attached .json file
+    regionsSelect = regions;
+    populateDropDownRegion(regionsSelect);
+  })
 
   //getting the leagues info fomr leagues.json.
   $.getJSON("/api/leagues", function(leagues) 
@@ -27,7 +43,6 @@ $(function()
             populateTableInfo(objs, tableHead, leagueSelect);
         })
     })
-
 });
 
 /*This function gets the drop down informaiton on the page.
@@ -52,6 +67,24 @@ function populateDropDownInfo(leagueSelect)
       );
     }
 }
+
+
+function populateDropDownRegion(regionsSelect) 
+{
+  for (var i = 0; i < regionsSelect.length; i++) 
+  {
+    $("#leagueDropdown").append(
+      "<option value=" +
+      regionsSelect[i].Code +
+        ">" +
+        regionsSelect[i].Name +
+        "</option>"
+    );
+  }
+}
+
+
+
 
 
 /*This function gets the drop down informaiton on the page.
@@ -125,17 +158,16 @@ function populateTableInfo(objs, tableHead, leagueSelect) {
               }
       }
     } else if  (catatext == "D&D adventurers league"){
-      $("#DnD").show();
-      $("#DnD").html(leagueSelect[9].Description);
+      $("#DnDtxt").show();
+      $("#DnDtxt").html("Wrong, sir! Wrong! Under section 37B of the contract signed by him, it states quite clearly that all offers shall become null and void if - and you can read it for yourself in this photostatic copy - 'I, the undersigned, shall forfeit all rights, privileges, and licenses herein and herein contained,' et cetera, et cetera... 'Fax mentis, incendium gloria cultum,' et cetera, et cetera... Memo bis punitor delicatum! It's all there! Black and white, clear as crystal! You tried to reference D&D! You picked the D&D option, which now has to be unselected and disabled, so you get... NOTHING!!! You lose! GOOD DAY, SIR! ");
       $("#teamsList").hide();
       $("#errorimg").show()
       $("#errorimg").attr("src","images/errorpic.jpg");
 
-      var delay = 5000; 
+      var delay = 6000; 
       setTimeout(function()
       { 
-        text = $(this).find('option:selected').text()
-        text.prop('disabled',true);
+        sessionStorage.error = "true";
         window.location = "index.html";
       }, delay);  
 

@@ -186,6 +186,19 @@ app.get("/index.html", function (req, res) {
 
 // ------------------------------------------------------------------------------
 // THIS CODE ALLOWS REQUESTS FOR THE API THROUGH 
+//GET REGIONS - Custom
+app.get("/api/regions", function (req, res) {
+    console.log("Received a GET request for Regions");
+	
+    let data = fs.readFileSync( __dirname + "/data/regions.json", "utf8");
+    data = JSON.parse(data);
+    
+    // console.log("Returned regions are: ");
+    // for(let i = 0; i < data.length; i++) {
+    //   console.log("Region: " + data[i].Name);
+    // }
+    res.end( JSON.stringify(data) );
+});
 
 // GET LEAGUES
 app.get("/api/leagues", function (req, res) {
