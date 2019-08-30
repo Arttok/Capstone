@@ -1,26 +1,26 @@
 [
 	{
 		"Name": "WoW Spring EU Cup",
-		"Code": "seucup",
+		"Code": "WoW-EU",
         "Description": "This is for the World of Warcraft Spring EU Cup. Only EU teams are allowed.",
         "Region": "EU"
         
 	},
 	{
 		"Name": "WoW Spring NA Cup",
-		"Code": "snacup",
+		"Code": "WoW-NA",
         "Description": "This is for the World of Warcraft Spring NA Cup. Only NA teams are allowed.",
         "Region": "NA"
 	},
 	{
 		"Name": "WoW Spring Global Cup",
-		"Code": "sallcup",
+		"Code": "WoW-Global",
         "Description": "This is for the World of Warcraft Spring Global Cup. Teams for all regions are allowed.",
         "Region": "All"
 	},
 	{
 		"Name": "World of Warcraft Arena",
-		"Code": "arena",
+		"Code": "WoW-Arena",
         "Description": "This league is specifically for World of Warcraft Arena tournament. All regions are allowed.",
         "Region": "All"
 	},
@@ -32,25 +32,25 @@
 	},
 	{
 		"Name": "Call of Duty",
-		"Code": "cod",
+		"Code": "COD",
         "Description": "This league is specifically for Call of Duty. All regions are allowed.",
         "Region": "All"
 	},
 	{
 		"Name": "League of Legends NA Qualifiers",
-		"Code": "lol",
+		"Code": "League-NA",
         "Description": "This league is specifically for the League of Legends NA Qualifiers. Only NA teams are allowed.",
         "Region": "NA"
     },
     {
 		"Name": "League of Legends EU Qualifiers",
-		"Code": "lol",
+		"Code": "League-EU",
         "Description": "This league is specifically for the League of Legends EU Qualifiers. Only NA teams are allowed.",
         "Region": "EU"
 	},
 	{
 		"Name": "Dota 2 International",
-		"Code": "dota2",
+		"Code": "Dota2",
         "Description": "This league is specifically for the Dota 2 International. All regions are allowed.",
         "Region": "All"
 	}
