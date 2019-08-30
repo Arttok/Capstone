@@ -16,14 +16,12 @@
       crossorigin="anonymous"
     />
 
-    <!-- External CSS-->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-
-    <!--FavICON-->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <!-- External CSS
+    <link rel="stylesheet" type="text/css" href="css/style.css" />-->
 
     <!--FavICON-->
     <link rel="shortcut icon" href="images/esportsIcon.jpg" />
+  
     
   </head>
   <body class="bg-muted text-dark">
@@ -70,18 +68,14 @@
       </div>
     </nav>
 
-    <!--Image at the top of the page-->
-    <figure class="text-center">
-        <img src="images/schoolbanner.jpg" alt="School Banner" id="bannerimg"/>
-    </figure>
     <!--Main section of the page. Has the menu bar as well as table that is generated via JS-->
     <main>
-      <form class="col-12" id="courseInfo">
+      <form class="col-12" id="teamInfo">
         <!--Should be Post but not due to github / live server reasons.-->
         <div class="col-12">
           <div class="text-center">
             <p class="h2 boldunder offset-md-3" id="Productname">
-              Class Information
+              Team Information
             </p>
             <div class="pt-3">
               <table
@@ -152,10 +146,10 @@
               <div id="msgDiv"> 
                 <ul id="ulMsg"></ul>
               </div>
-              <p class="h2">Students</p>
+              <p class="h2">Players</p>
               <table
-                class="table table-bordered border-light text-dark" name="studenttbl"
-                id="students"
+                class="table table-bordered border-light text-dark" name="playertbl"
+                id="players"
               ></table>
             </div>
             <button

@@ -555,7 +555,8 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		ContactName: req.body.contactname,
 		Age: Number(req.body.age),
         Gender: req.body.gender,
-        Phone: req.body.phone
+        Phone: req.body.phone,
+        Region: req.body.region
     };
 
     //console.log("Performing member validation...")
@@ -593,6 +594,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     match.Age = Number(req.body.age);
     match.Gender = req.body.gender;
     match.Phone = req.body.phone;
+    match.Region = req.body.region;
 
     // make sure edit doesn't violate team rules
 
@@ -606,6 +608,12 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     {
         res.status(409).send("Member's new gender does not conform to team gender rules");
 		return;       
+    }
+    
+    if (team.Region != "Any" && match.Region != team.Region) 
+    {
+        res.status(409).send("Member's new Region does not conform to team Region rules");
+        return true;  // found a conflict!
     }
 
     fs.writeFileSync(__dirname + "/data/teams.json", JSON.stringify(data));

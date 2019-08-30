@@ -20,7 +20,7 @@
 				"Age": 24,
 				"Gender": "Male",
                 "Phone": "555-214-5475",
-                "Region": "EU"
+                "Region": "NA"
 			},
 			{
 				"MemberId": 5,
@@ -30,7 +30,7 @@
 				"Age": 10,
 				"Gender": "Male",
 				"Phone": "817-555-5454",
-                "Region": "EU"
+                "Region": "NA"
 			}
 		]
 	},
@@ -65,7 +65,7 @@
 				"Age": 21,
 				"Gender": "Male",
 				"Phone": "741-123-9874",
-                "Region": "EU"
+                "Region": "NA"
 			},
 			{
 				"MemberId": 3,
@@ -75,7 +75,7 @@
 				"Age": 27,
 				"Gender": "Female",
 				"Phone": "852-456-7531",
-                "Region": "US"
+                "Region": "NA"
 			},
 			{
 				"MemberId": 4,
@@ -85,7 +85,7 @@
 				"Age": 10,
 				"Gender": "Male",
 				"Phone": "817-555-5454",
-                "Region": "US"
+                "Region": "NA"
 			},
 			{
 				"MemberId": 5,
@@ -165,7 +165,7 @@
 				"Age": 27,
 				"Gender": "Female",
 				"Phone": "852-456-7531",
-                "Region": "US"
+                "Region": "EU"
 			},
 			{
 				"MemberId": 4,
@@ -175,7 +175,7 @@
 				"Age": 10,
 				"Gender": "Male",
 				"Phone": "817-555-5454",
-                "Region": "US"
+                "Region": "EU"
 			}
 		]
 	},
@@ -210,7 +210,7 @@
 				"Age": 10,
 				"Gender": "Male",
 				"Phone": "817-555-5454",
-                "Region": "US"
+                "Region": "NA"
 			},
 			{
 				"MemberId": 5,
