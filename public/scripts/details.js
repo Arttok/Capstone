@@ -5,7 +5,8 @@ $(function()
   let objs;
   let urlParams = new URLSearchParams(location.search);
   let TeamId = urlParams.get("id");
-  
+  let leaguesSelect;
+
   $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
@@ -19,35 +20,44 @@ $(function()
     objs = teams;
     showPlayers(objs);
     createMngrTable(objs);
+    $("#leaguecode").val(objs.League);
       //"courses.html?" + "instr=" + $.urlParam('instr') );
   })
 
   $.getJSON("/api/leagues", function(leagues) 
+  {
+    // the returned data is available in an "already parsed"
+    // parameter named data
+    // take a few minutes to examine the attached .json file
+    leaguesSelect = leagues
+    let x;
+    $("#leaguecode").empty();
+    for (var i = 0; i < leaguesSelect.length; i++) 
     {
-      // the returned data is available in an "already parsed"
-      // parameter named data
-      // take a few minutes to examine the attached .json file
-      leaguesSelect = leagues
-      let x;
-      $("#leaguecode").empty();
-      for (var i = 0; i < leaguesSelect.length; i++) 
-      {
-          $("#leaguecode").append(
-          "<option value=" +
-              leaguesSelect[i].Code +
-              ">" +
-              leaguesSelect[i].Name +
-              "</option>"
-          );
-          if ($("#leaguecode option:selected").val() ==leaguesSelect[i].Code)
-          { //gets the starting max team members and region based upon league.
-            $("#maxteammembers").html(leaguesSelect[i].MaxTeamMembers);
-            $("#region").text(leaguesSelect[i].Region);
-          }
-      }
+      $("#leaguecode").append(
+        "<option value=" +
+          leaguesSelect[i].Code +
+          ">" +
+          leaguesSelect[i].Name +
+          "</option>"
+      );      
+      if ($("#leaguecode option:selected").val() ==leaguesSelect[i].Code)
+      { //gets the starting max team members and region based upon league.
+        $("#maxteammembers").val(leaguesSelect[i].MaxTeamMembers);            
+      }   
+    }
+  })
 
-      createLeagueTable(leaguesSelect);
-    })
+  $.getJSON("/api/regions", function(region) 
+  {
+    regionSelect = region
+    createLeagueTable(regionSelect, leaguesSelect);
+
+    $("#leaguecode").change(function()
+    {
+      createLeagueTable(regionSelect, leaguesSelect);
+    }); 
+  });
 })
 
 
@@ -60,16 +70,52 @@ function createMngrTable(objs)
   $("#minmemberage").val(objs.MinMemberAge);
   $("#maxmemberage").val(objs.MaxMemberAge);
   $("#teamgender").val(objs.TeamGender);
-  $("#region").val(objs.Region);
 }
 
-function createLeagueTable(leaguesSelect)
+
+function createLeagueTable(regionSelect, leaguesSelect)
 {
-  
-  //console.log($("#leaguecode option:selected").val())
-  //$("#maxteammembers").val(leaguesSelect.MaxTeamMembers);
-  //$("#region").val(leaguesSelect.Region);
+  $("#region").empty();
+  for (let i = 0; i < leaguesSelect.length; i++) 
+  {
+    if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
+    {
+      if (leaguesSelect[i].Region == "All")
+      {
+        $("#region").append(
+          "<option value='All'>" + "All" + "</option>"
+        )
+        for (let i = 0; i < regionSelect.length; i++)
+        {
+          if (leaguesSelect[i].Region == regionSelect[i].Code)
+          { 
+            $("#region").append( 
+              "<option value=" +
+              regionSelect[i].Code +
+              ">" +
+              regionSelect[i].Name +
+              "</option>"
+            )
+          }
+        }
+      } else {
+        for (let j = 0; j < regionSelect.length; j++)
+        {
+          if (leaguesSelect[i].Region == regionSelect[j].Code)
+          $("#region").append( 
+            "<option value=" +
+            regionSelect[j].Code +
+            ">" +
+            regionSelect[j].Name +
+            "</option>"
+          )
+        }
+      }
+    }
+  }
 }
+    
+
 /*This function shows the student table informaiton..
  *
  *
@@ -78,7 +124,8 @@ function createLeagueTable(leaguesSelect)
  *@param ---StudentName--- is the student name.
  *@param ---Email--- is the student email.
  */
-function showPlayers(objs) {
+function showPlayers(objs) 
+{
   let tableHead = ["Tag Name", "Email", "Age", "Gender", "Phone", "Region"];
 
     $("#players").empty();
