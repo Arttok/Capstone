@@ -24,7 +24,7 @@
   
     
   </head>
-  <body class="bg-muted text-dark">
+  <body class="bg-info text-light">
     <!-- Header / Navigation section-->
     <nav>
       <div
@@ -74,7 +74,7 @@
         <!--Should be Post but not due to github / live server reasons.-->
         <div class="col-12">
           <div class="text-center">
-            <p class="h2 boldunder offset-md-3" id="Productname">
+            <p class="h2 boldunder" id="Productname">
               Team Information
             </p>
             <div class="pt-3">
@@ -82,61 +82,62 @@
                 class="table table-bordered border-light text-dark"
                 id="detailtbl">
                 <tr class="instrYes">
-                  <th>Team Name</th>
+                  <th class="text-light">Team Name</th>
                   <td>
                     <input type="text" name="teamname" id="teamname" readonly />
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>League</th>
+                  <th class="text-light">League</th>
                   <td>
-                    <input type="text" name="leaguecode" id="leaguecode"/>
+                    <select name="leaguecode" id="leaguecode">
+                    </select> 
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Manager Name</th>
+                  <th class="text-light">Manager Name</th>
                   <td>
-                    <input type="text" name="managername" id="managername," readonly />
+                    <input type="text" name="managername" id="managername" readonly />
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Manager Phone</th>
+                  <th class="text-light">Manager Phone</th>
                   <td>
                     <input type="text" name="managerphone" id="managerphone"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Manager Email</th>
+                  <th class="text-light">Manager Email</th>
                   <td>
                     <input type="text" name="manageremail" id="manageremail"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Max Team Members</th>
+                  <th class="text-light">Max Team Members</th>
                   <td>
-                    <input type="text" name="maxteammembers" id="maxteammembers"/>
+                    <input type="number" name="maxteammembers" id="maxteammembers"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Minimum Member Age</th>
+                  <th class="text-light">Minimum Member Age</th>
                   <td>
-                    <input type="text" name="minmemberage" id="minmemberage"/>
+                    <input type="number" name="minmemberage" id="minmemberage"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Maximum Member Age</th>
+                  <th class="text-light">Maximum Member Age</th>
                   <td>
-                    <input type="text" name="maxmemberage" id="maxmemberage"/>
+                    <input type="number" name="maxmemberage" id="maxmemberage"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Team Gender</th>
+                  <th class="text-light">Team Gender</th>
                   <td>
                     <input type="text" name="teamgender" id="teamgender"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th>Region</th>
+                  <th class="text-light">Region</th>
                   <td>
                     <input type="text" name="region" id="region"/>
                   </td>
