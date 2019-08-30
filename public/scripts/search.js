@@ -164,7 +164,7 @@ function populateTableInfo(objs, tableHead, leagueSelect) {
       $("#errorimg").show()
       $("#errorimg").attr("src","images/errorpic.jpg");
 
-      var delay = 6000; 
+      var delay = 14000; 
       setTimeout(function()
       { 
         sessionStorage.error = "true";

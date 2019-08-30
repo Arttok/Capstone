@@ -119,6 +119,28 @@ function isThereAnyGenderChangeConflicts(newTeamGender, team)
     return false; // no conflicts
 }
 
+//custom Region validation conflict
+function isThereAnyRegionChangeConflicts(newTeamRegion, team)
+{
+    if (newTeamRegion == "Any")
+    {
+        // No conflict w/ team switching to coed
+        return false;  
+    } else 
+    {
+        for (let i = 0; i < team.Members.length; i++)
+        {
+            // look for member whose gender would conflict with new team gender
+            if (team.Members[i].Region == newTeamRegion) 
+            {
+                //console.log("Found member who is " + team.Members[i].Region + " on a team witching to " + newTeamRegion);
+                return true;  // found a conflict!
+            }
+        }
+    }    
+    return false; // no conflicts
+}
+
 // ------ Validation helpers ------------------
 
 function isValidTeam(team)
@@ -351,6 +373,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		MinMemberAge: Number(req.body.minmemberage),
 		MaxMemberAge: Number(req.body.maxmemberage),
         TeamGender: req.body.teamgender,
+        Region: req.body.region
     };
 
     //console.log("Performing team validation...")
@@ -379,6 +402,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     match.ManagerName = req.body.managername;
     match.ManagerPhone = req.body.managerphone;
     match.ManagerEmail = req.body.manageremail;
+    match.Region = req.body.region;
 
     // make sure new values for max members, min/max age, or gender
     // don't conflict with members already on team
@@ -409,8 +433,14 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
         res.status(409).send("Gender change conflicts with current member on team");
 		return;
     }
-    match.TeamGender = req.body.teamgender,
+    match.TeamGender = req.body.teamgender;
 
+    if ( isThereAnyRegionChangeConflicts(req.body.region, match) )
+    {
+        res.status(409).send("Region change conflicts with current member on team");
+		return;
+    }
+    match.Region = req.body.region,
 
     fs.writeFileSync(__dirname + "/data/teams.json", JSON.stringify(data));
    
@@ -458,7 +488,8 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		ContactName: req.body.contactname,
 		Age: Number(req.body.age),
         Gender: req.body.gender,
-        Phone: req.body.phone
+        Phone: req.body.phone,
+        Region: req.body.region
     };
 
     //console.log("Performing member validation...")
