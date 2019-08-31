@@ -6,6 +6,7 @@ $(function()
   let urlParams = new URLSearchParams(location.search);
   let TeamId = urlParams.get("id");
   let leaguesSelect;
+  let maxLeagueMembers;
 
   $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -41,23 +42,20 @@ $(function()
           leaguesSelect[i].Name +
           "</option>"
       );      
-      if ($("#leaguecode option:selected").val() ==leaguesSelect[i].Code)
-      { //gets the starting max team members and region based upon league.
-        $("#maxteammembers").val(leaguesSelect[i].MaxTeamMembers);            
-      }   
+
     }
 
     $.getJSON("/api/regions", function(region) 
     {
-    regionSelect = region
-    createLeagueTable(regionSelect, leaguesSelect);
-
-    $("#leaguecode").change(function()
-    {
+      regionSelect = region
       createLeagueTable(regionSelect, leaguesSelect);
-    }); 
+      $("#leaguecode").val(objs.League).change(); 
+      $("#maxteammembers").val(objs.MaxTeamMembers);
 
-
+      $("#leaguecode").change(function()
+      {
+        createLeagueTable(regionSelect, leaguesSelect);
+      }); 
   })
 });
 
@@ -96,8 +94,8 @@ function createMngrTable(objs)
   $("#managerphone").val(objs.ManagerPhone);
   $("#manageremail").val(objs.ManagerEmail);
   $("#minmemberage").val(objs.MinMemberAge);
-  $("#maxmemberage").val(objs.MaxMemberAge);
   $("#teamgender").val(objs.TeamGender);
+  $("#maxmemberage").val(objs.MaxMemberAge);
 }
 
 
@@ -108,6 +106,7 @@ function createLeagueTable(regionSelect, leaguesSelect)
   {
     if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
     {
+      $("#maxteammembers").val(leaguesSelect[i].MaxTeamMembers);
       if (leaguesSelect[i].Region == "All")
       {
         $("#region").append(
@@ -197,7 +196,9 @@ function showPlayers(objs)
 
 
 function validateForm()
-{
+{ 
+    console.log("hello " + Number(maxLeagueMembers));
+    console.log("hi " + $("#maxteammembers").val())
     let errMsg = [];
     if ($("#leaguecode").val().trim() == "")//validation for title
     {
@@ -229,6 +230,19 @@ function validateForm()
         errMsg[errMsg.length] = "Max Member Age is required";
     }
 
+    for (let i = 0; i < leaguesSelect.length; i++)
+    {
+      if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
+      {
+        maxLeagueMembers = leaguesSelect[i].MaxTeamMembers;
+        if ($("#maxteammembers").val() > maxLeagueMembers)
+        {
+          errMsg[errMsg.length] = "Max League Members is above the league cap.";
+        }
+
+      } 
+    }
+    
     if (errMsg.length == 0)
     {
         return true;
