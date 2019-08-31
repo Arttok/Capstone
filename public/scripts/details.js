@@ -49,7 +49,6 @@ $(function()
 
     $.getJSON("/api/regions", function(region) 
     {
-    console.log(leaguesSelect);
     regionSelect = region
     createLeagueTable(regionSelect, leaguesSelect);
 
@@ -65,7 +64,6 @@ $(function()
 
   $("#update").click(function() 
   {
-    console.log($("#teamInfo").serialize())
     let isok = validateForm();
       if (isok == false)
       {
