@@ -201,26 +201,6 @@ function showPlayers(objs)
 function validateForm()
 {
     let errMsg = [];
-
-    $.getJSON("/api/teams/", function(classes) 
-    {
-        // the returned data is available in an "already parsed"
-        // parameter named data
-        // take a few minutes to examine the attached .json file
-        objs = classes;
-        for (let i = 0; i < objs.length; i++)
-        {
-            if ($("#teamname").val().trim() == objs[i].TeamName)//validation for courseID
-            {
-                errMsg[errMsg.length] = "Team Name is already in use.";
-            }
-        }
-
-        for(let i=0; i < errMsg.length; i++)
-        {
-            $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
-        }
-    });
     if ($("#leaguecode").val().trim() == "")//validation for title
     {
         errMsg[errMsg.length] = "League is required";
@@ -245,6 +225,10 @@ function validateForm()
     if ($("#minmemberage").val().trim() == "") //validation for Meets
     {
         errMsg[errMsg.length] = "Min Member Age is required";
+    }
+    if ($("#maxmemberage").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Max Member Age is required";
     }
 
     if (errMsg.length == 0)
