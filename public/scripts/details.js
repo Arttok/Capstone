@@ -12,7 +12,7 @@ $(function()
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
   }
-
+  console.log(TeamId);
   $.getJSON("/api/teams/" + TeamId, function(teams) 
   {
     // the returned data is available in an "already parsed"
@@ -21,8 +21,20 @@ $(function()
     objs = teams;
     showPlayers(objs);
     createMngrTable(objs);
-    $("#leaguecode").val(objs.League);
       //"courses.html?" + "instr=" + $.urlParam('instr') );
+
+    $.getJSON("/api/regions", function(region) 
+    {
+      regionSelect = region
+      createLeagueTable(regionSelect, leaguesSelect);
+      $("#maxteammembers").val(objs.MaxTeamMembers);
+      $("#leaguecode").val(objs.League).change();
+
+      $("#leaguecode").change(function()
+      {
+        createLeagueTable(regionSelect, leaguesSelect);
+      }); 
+    })
   })
 
   $.getJSON("/api/leagues", function(leagues) 
@@ -41,28 +53,15 @@ $(function()
           ">" +
           leaguesSelect[i].Name +
           "</option>"
-      );      
-
+      );
     }
-
-    $.getJSON("/api/regions", function(region) 
-    {
-      regionSelect = region
-      createLeagueTable(regionSelect, leaguesSelect);
-      $("#leaguecode").val(objs.League).change(); 
-      $("#maxteammembers").val(objs.MaxTeamMembers);
-
-      $("#leaguecode").change(function()
-      {
-        createLeagueTable(regionSelect, leaguesSelect);
-      }); 
-  })
-});
-
+  });
 
   $("#update").click(function() 
   {
-    let isok = validateForm();
+    console.log("check")
+    let isok = validateForm(leaguesSelect);
+    console.log("is it ok?")
       if (isok == false)
       {
         return false;
@@ -195,10 +194,8 @@ function showPlayers(objs)
 }
 
 
-function validateForm()
+function validateForm(leaguesSelect)
 { 
-    console.log("hello " + Number(maxLeagueMembers));
-    console.log("hi " + $("#maxteammembers").val())
     let errMsg = [];
     if ($("#leaguecode").val().trim() == "")//validation for title
     {
@@ -229,24 +226,27 @@ function validateForm()
     {
         errMsg[errMsg.length] = "Max Member Age is required";
     }
-
-    for (let i = 0; i < leaguesSelect.length; i++)
+    
+    for (let i = 0; i < leaguesSelect.length; i++) 
     {
       if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
       {
         maxLeagueMembers = leaguesSelect[i].MaxTeamMembers;
-        if ($("#maxteammembers").val() > maxLeagueMembers)
+        if (($("#maxteammembers").val()) > maxLeagueMembers)
         {
-          errMsg[errMsg.length] = "Max League Members is above the league cap.";
+          errMsg[errMsg.length] = "Max Team Size is above League Max of " + maxLeagueMembers;
         }
-
-      } 
+      }
     }
-    
+
     if (errMsg.length == 0)
     {
         return true;
     }
-    $("#ulMsg").empty();//this is for msgDiv not 
+    $("#ulMsg").empty();//this is for msgDiv not
+    for(let i=0; i < errMsg.length; i++)
+    {
+        $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
+    }
     return false;
 }
