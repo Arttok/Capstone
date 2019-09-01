@@ -191,7 +191,7 @@ function showPlayers(objs)
         objs.Members[i].Region +
         "</td><td class='editplayer'>" +
         "<a class='editplayerbtn btn text-warning' href=player.html?id=" +
-          [i] + "&team=" + TeamId + ">Edit</a>" + 
+          TeamId + "&member=" + [i] + ">Edit</a>" + 
         "</td></tr>";
         $("#players tbody").append(markup);
       };
