@@ -1,0 +1,183 @@
+<!--Details Page-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Class Details</title>
+    <meta charset="utf-8" />
+
+    <!-- FontAwesome Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/dbcee74e1c.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- External CSS
+    <link rel="stylesheet" type="text/css" href="css/style.css" />-->
+
+    <!--FavICON-->
+    <link rel="shortcut icon" href="images/esportsIcon.jpg" />
+  
+    
+  </head>
+  <body class="bg-info text-light">
+    <!-- Header / Navigation section-->
+    <nav>
+      <div
+      class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 text-light bg-dark"
+      >
+      <div class="h5 my-0 ml-5 mr-md-auto font-weight-normal">
+          <a class="btn btn-outline-primary text-light" href="index.html">
+              Home
+          </a>
+          <a class="btn btn-outline-primary text-light ml-5" href="#">
+              Manager
+          </a>
+      </div>
+      <div class="col-5 ml-0 pl-0 h4">Hart-eSports</div>
+      <div class="mr-5 pl-3">
+          <!-- Dropdown Menu bar that list various other sections of the page-->
+          <div
+          class="dropdown show bg-dark d-inline text-light btn-outline-primary"
+          >
+          <a
+              class="btn text-light bg-dark btn-outline-primary dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+          >
+              Menu
+          </a>
+          <div
+              class="dropdown-menu bg-dark text-light btn-outline-primary"
+              aria-labelledby="dropdownMenuLink"
+          >
+              <a class="dropdown-item btn text-light mask" href="index.html">
+                  Home
+              </a>
+              <a class="dropdown-item btn text-light mask" href="teamsearch.html">
+                  Search Teams
+              </a>
+              <a class="dropdown-item btn text-light mask" href="#">
+                  Add a Team
+              </a>
+              <a class="dropdown-item btn text-light mask" href="#">
+                  About US
+              </a>
+          </div>
+          </div>
+      </div>
+      </div>
+  </nav>
+
+    <!--Main section of the page. Has the menu bar as well as table that is generated via JS-->
+    <main>
+      <form class="col-12 pb-3" id="teamInfo">
+        <!--Should be Post but not due to github / live server reasons.-->
+        <div class="col-12">
+          <div class="text-center">
+            <p class="h2 boldunder" id="Productname">
+              Player Information
+            </p>
+            <div class="pt-3">
+              <table
+                class="table table-bordered border-light text-dark"
+                id="detailtbl">
+                <tr class="instrYes">
+                  <th class="text-light">Player Name</th>
+                  <td>
+                    <input type="number" name="playerName" id="playerName"/>
+                  </td> 
+                </tr>
+                <tr class="instrYes">
+                  <th class="text-light">Player Email</th>
+                  <td>
+                    <input type="text" name="playerEmail" id="playerEmail" />
+                  </td>
+                </tr>
+                <tr class="instrYes">
+                  <th class="text-light">Contact Name</th>
+                  <td>
+                    <input type="text" name="contactName" id="contactName"/>
+                  </td>
+                </tr>
+                <tr class="instrYes">
+                  <th class="text-light">Age</th>
+                  <td>
+                    <input type="text" name="age" id="age"/>
+                  </td>
+                </tr>
+                <tr class="instrYes">
+                  <th class="text-light">Gender</th>
+                  <td>
+                    <input type="text" name="gender" id="gender" />
+                  </td>
+                </tr>
+                <tr class="instrYes">
+                  <th class="text-light">Phone</th>
+                  <td>
+                    <input type="number" name="phone" id="phone"/>
+                  </td>
+                </tr>
+                <tr class="instrYes">
+                  <th class="text-light">Region</th>
+                  <td id="regionholder">
+                    <select type="text" name="region" id="region">
+                    </select>
+                    <p class="d-inline-block text-light">Options are based upon Team & League.</p>
+                  </td>
+                </tr>
+              </table>
+              <br/>
+              <div id="msgDiv"> 
+                <ul class="list-unstyled" id="ulMsg"></ul>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-lg btn-secondary col-1"
+              id="cancel"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-lg btn-secondary col-1 offset-md-1"
+              id="update"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
+              Update
+            </button>
+            <button
+                class="btn btn-lg btn-secondary col-1 offset-md-1"
+                id="update"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
+                Delete
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/details.js"></script>
+
+    <!-- End Body -->
+  </body>
+</html>

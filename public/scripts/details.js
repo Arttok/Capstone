@@ -171,9 +171,12 @@ function showPlayers(objs)
   } else {
       let tBody = $("<tbody class= text-light>");
       $("#players").append(tBody);
+      let urlParams = new URLSearchParams(location.search);
+      let TeamId = urlParams.get("id");
+
       for (let i = 0; i < objs.Members.length; i++) 
       {
-      let markup =
+        let markup =
         "<tr><td name=membername" + ">" +
         objs.Members[i].MemberName +
         "</td><td name=email>" +
@@ -186,12 +189,17 @@ function showPlayers(objs)
         objs.Members[i].Phone +
         "</td><td class=region>" +
         objs.Members[i].Region +
-        "</td><td name=email>" +
-        objs.Members[i].Email +
+        "</td><td class='editplayer'>" +
+        "<a class='editplayerbtn btn text-warning' href=player.html?id=" +
+          [i] + "&team=" + TeamId + ">Edit</a>" + 
         "</td></tr>";
-      $("#players tbody").append(markup);
-    };
-  }
+        $("#players tbody").append(markup);
+      };
+      $("#reset").click(function() 
+      {
+        $('#courseInfo')[0].reset();
+      });
+    }
 }
 
 
