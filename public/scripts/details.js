@@ -152,7 +152,7 @@ function createLeagueTable(regionSelect, leaguesSelect)
  */
 function showPlayers(objs) 
 {
-  let tableHead = ["Tag Name", "Email", "Age", "Gender", "Phone", "Region"];
+  let tableHead = ["Tag Name", "Email", "Age", "Gender", "Phone", "Region", "Edit"];
 
     $("#players").empty();
     let thead = $("<thead class= text-light>");
@@ -165,15 +165,16 @@ function showPlayers(objs)
       $("#players thead tr").append(col);
     }
 
-  if (objs.Members.length == 0) {
+  if (objs.Members.length == 0) 
+  {
     $("#players").html("<table class=text-light> <tr><td>No Players have Registered</td></td> </table>");
   } else {
-    let tBody = $("<tbody class= text-light>");
-    $("#players").append(tBody);
-    for (let i = 0; i < objs.Members.length; i++) 
-    {
+      let tBody = $("<tbody class= text-light>");
+      $("#players").append(tBody);
+      for (let i = 0; i < objs.Members.length; i++) 
+      {
       let markup =
-        "<tr><td name=membername" + [i] + ">" +
+        "<tr><td name=membername" + ">" +
         objs.Members[i].MemberName +
         "</td><td name=email>" +
         objs.Members[i].Email +
@@ -184,9 +185,9 @@ function showPlayers(objs)
         "</td><td class=phone>" +
         objs.Members[i].Phone +
         "</td><td class=region>" +
-        objs.Members[i].Region
-        "</td><td class='detailbtn'>" +
-        '<input type="button" id=' + [i] + ' class="delete" value="Unregister"/>' +
+        objs.Members[i].Region +
+        "</td><td name=email>" +
+        objs.Members[i].Email +
         "</td></tr>";
       $("#players tbody").append(markup);
     };
