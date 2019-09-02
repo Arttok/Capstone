@@ -544,9 +544,12 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
  // EDIT A MEMBER ON TEAM
  app.put("/api/teams/:id/members", urlencodedParser, function (req, res) {
     let teamId = req.params.id;
+    let MemberId = req.body.memberid;
     console.log("Received a PUT request to edit a member on team " + teamId);
     console.log("BODY -------->" + JSON.stringify(req.body));
 
+    console.log(req.params.id)
+    console.log(req.body.memberid)
     // assemble member information so we can validate it
     let member = {
         MemberId: req.body.memberid,
@@ -559,15 +562,17 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
         Region: req.body.region
     };
 
-    //console.log("Performing member validation...")
+    console.log(MemberId)
+    console.log("Performing member validation...")
     if (! isValidMember(member))
     {
-        //console.log("Invalid  data!")
+        console.log("Invalid  data!")
 		res.status(400).send("Bad Request - Incorrect or Missing Data");
 		return;      
     }
-    //console.log("Valid data!")
+    console.log("Valid data!")
 
+    console.log("find team")
     // find the team
     let data = fs.readFileSync( __dirname + "/data/teams.json", "utf8");
     data = JSON.parse( data );
@@ -579,6 +584,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		return;
     }
 
+    console.log(team)
     // find existing member on the team
     let match = team.Members.find( m => m.MemberId == req.body.memberid );
     if (match == null)
@@ -587,6 +593,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 		return;
     }
 
+    console.log("updating team member.")
     // update the member
     match.Email = req.body.email;
     match.MemberName = req.body.membername;    
