@@ -4,7 +4,6 @@ $(function()
   let objs;
   let tableHead = ["League", "Team Name", "Max Members", "Spots Left", "Region", "Details"];
   let leagueSelect;
-  console.log(sessionStorage.error)
   if (sessionStorage.error == "true")
   {
     $("#DnD").prop("disabled", true);

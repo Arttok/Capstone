@@ -6,12 +6,13 @@ $(function()
   let urlParams = new URLSearchParams(location.search);
   let TeamId = urlParams.get("id");
   let leaguesSelect;
+  let maxLeagueMembers;
 
   $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
   }
-
+  console.log(TeamId);
   $.getJSON("/api/teams/" + TeamId, function(teams) 
   {
     // the returned data is available in an "already parsed"
@@ -20,8 +21,20 @@ $(function()
     objs = teams;
     showPlayers(objs);
     createMngrTable(objs);
-    $("#leaguecode").val(objs.League);
       //"courses.html?" + "instr=" + $.urlParam('instr') );
+
+    $.getJSON("/api/regions", function(region) 
+    {
+      regionSelect = region
+      createLeagueTable(regionSelect, leaguesSelect);
+      $("#maxteammembers").val(objs.MaxTeamMembers);
+      $("#leaguecode").val(objs.League).change();
+
+      $("#leaguecode").change(function()
+      {
+        createLeagueTable(regionSelect, leaguesSelect);
+      }); 
+    })
   })
 
   $.getJSON("/api/leagues", function(leagues) 
@@ -40,33 +53,15 @@ $(function()
           ">" +
           leaguesSelect[i].Name +
           "</option>"
-      );      
-      if ($("#leaguecode option:selected").val() ==leaguesSelect[i].Code)
-      { //gets the starting max team members and region based upon league.
-        $("#maxteammembers").val(leaguesSelect[i].MaxTeamMembers);            
-      }   
+      );
     }
-
-    $.getJSON("/api/regions", function(region) 
-    {
-    console.log(leaguesSelect);
-    regionSelect = region
-    createLeagueTable(regionSelect, leaguesSelect);
-
-    $("#leaguecode").change(function()
-    {
-      createLeagueTable(regionSelect, leaguesSelect);
-    }); 
-
-
-  })
-});
-
+  });
 
   $("#update").click(function() 
   {
-    console.log($("#teamInfo").serialize())
-    let isok = validateForm();
+    console.log("check")
+    let isok = validateForm(leaguesSelect);
+    console.log("is it ok?")
       if (isok == false)
       {
         return false;
@@ -98,8 +93,8 @@ function createMngrTable(objs)
   $("#managerphone").val(objs.ManagerPhone);
   $("#manageremail").val(objs.ManagerEmail);
   $("#minmemberage").val(objs.MinMemberAge);
-  $("#maxmemberage").val(objs.MaxMemberAge);
   $("#teamgender").val(objs.TeamGender);
+  $("#maxmemberage").val(objs.MaxMemberAge);
 }
 
 
@@ -110,6 +105,7 @@ function createLeagueTable(regionSelect, leaguesSelect)
   {
     if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
     {
+      $("#maxteammembers").val(leaguesSelect[i].MaxTeamMembers);
       if (leaguesSelect[i].Region == "All")
       {
         $("#region").append(
@@ -156,7 +152,7 @@ function createLeagueTable(regionSelect, leaguesSelect)
  */
 function showPlayers(objs) 
 {
-  let tableHead = ["Tag Name", "Email", "Age", "Gender", "Phone", "Region"];
+  let tableHead = ["Tag Name", "Email", "Age", "Gender", "Phone", "Region", "Edit"];
 
     $("#players").empty();
     let thead = $("<thead class= text-light>");
@@ -169,15 +165,19 @@ function showPlayers(objs)
       $("#players thead tr").append(col);
     }
 
-  if (objs.Members.length == 0) {
+  if (objs.Members.length == 0) 
+  {
     $("#players").html("<table class=text-light> <tr><td>No Players have Registered</td></td> </table>");
   } else {
-    let tBody = $("<tbody class= text-light>");
-    $("#players").append(tBody);
-    for (let i = 0; i < objs.Members.length; i++) 
-    {
-      let markup =
-        "<tr><td name=membername" + [i] + ">" +
+      let tBody = $("<tbody class= text-light>");
+      $("#players").append(tBody);
+      let urlParams = new URLSearchParams(location.search);
+      let TeamId = urlParams.get("id");
+
+      for (let i = 0; i < objs.Members.length; i++) 
+      {
+        let markup =
+        "<tr><td name=membername" + ">" +
         objs.Members[i].MemberName +
         "</td><td name=email>" +
         objs.Members[i].Email +
@@ -188,39 +188,24 @@ function showPlayers(objs)
         "</td><td class=phone>" +
         objs.Members[i].Phone +
         "</td><td class=region>" +
-        objs.Members[i].Region
-        "</td><td class='detailbtn'>" +
-        '<input type="button" id=' + [i] + ' class="delete" value="Unregister"/>' +
+        objs.Members[i].Region +
+        "</td><td class='editplayer'>" +
+        "<a class='editplayerbtn btn text-warning' href=player.html?id=" +
+          TeamId + "&member=" + [i] + ">Edit</a>" + 
         "</td></tr>";
-      $("#players tbody").append(markup);
-    };
-  }
+        $("#players tbody").append(markup);
+      };
+      $("#reset").click(function() 
+      {
+        $('#courseInfo')[0].reset();
+      });
+    }
 }
 
 
-function validateForm()
-{
+function validateForm(leaguesSelect)
+{ 
     let errMsg = [];
-
-    $.getJSON("/api/teams/", function(classes) 
-    {
-        // the returned data is available in an "already parsed"
-        // parameter named data
-        // take a few minutes to examine the attached .json file
-        objs = classes;
-        for (let i = 0; i < objs.length; i++)
-        {
-            if ($("#teamname").val().trim() == objs[i].TeamName)//validation for courseID
-            {
-                errMsg[errMsg.length] = "Team Name is already in use.";
-            }
-        }
-
-        for(let i=0; i < errMsg.length; i++)
-        {
-            $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
-        }
-    });
     if ($("#leaguecode").val().trim() == "")//validation for title
     {
         errMsg[errMsg.length] = "League is required";
@@ -246,11 +231,31 @@ function validateForm()
     {
         errMsg[errMsg.length] = "Min Member Age is required";
     }
+    if ($("#maxmemberage").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Max Member Age is required";
+    }
+    
+    for (let i = 0; i < leaguesSelect.length; i++) 
+    {
+      if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
+      {
+        maxLeagueMembers = leaguesSelect[i].MaxTeamMembers;
+        if (($("#maxteammembers").val()) > maxLeagueMembers)
+        {
+          errMsg[errMsg.length] = "Max Team Size is above League Max of " + maxLeagueMembers;
+        }
+      }
+    }
 
     if (errMsg.length == 0)
     {
         return true;
     }
-    $("#ulMsg").empty();//this is for msgDiv not 
+    $("#ulMsg").empty();//this is for msgDiv not
+    for(let i=0; i < errMsg.length; i++)
+    {
+        $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
+    }
     return false;
 }

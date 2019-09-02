@@ -79,79 +79,58 @@
 
     <!--Main section of the page. Has the menu bar as well as table that is generated via JS-->
     <main>
-      <form class="col-12 pb-3" id="teamInfo">
+      <form class="col-12 pb-3" id="playerInfo">
         <!--Should be Post but not due to github / live server reasons.-->
         <div class="col-12">
           <div class="text-center">
             <p class="h2 boldunder" id="Productname">
-              Team Information
+              Player Information
             </p>
             <div class="pt-3">
-              <table
-                class="table table-bordered border-light text-dark"
-                id="detailtbl">
+                <table
+                    class="table table-bordered border-light text-dark"
+                    id="playertbl">
                 <tr class="instrYes">
-                  <th class="text-light">Team Name</th>
+                  <th class="text-light">Player Name</th>
                   <td>
-                    <input type="text" name="teamname" id="teamname" readonly/>
-                  </td>
-                </tr>
-                <tr class="instrYes">
-                  <th class="text-light">League</th>
-                  <td>
-                    <select class="d-inline-block" name="leaguecode" id="leaguecode">
-                    </select> 
+                    <input type="text" name="memberid" id="memberid" class="d-none">
+                    <input type="text" name="membername" id="membername"/>
                   </td> 
                 </tr>
                 <tr class="instrYes">
-                  <th class="text-light">Manager Name</th>
+                  <th class="text-light">Player Email</th>
                   <td>
-                    <input type="text" name="managername" id="managername" />
+                    <input type="text" name="email" id="email" />
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th class="text-light">Manager Phone</th>
+                  <th class="text-light">Contact Name</th>
                   <td>
-                    <input type="text" name="managerphone" id="managerphone"/>
+                    <input type="text" name="contactname" id="contactname"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th class="text-light">Manager Email</th>
+                  <th class="text-light">Age</th>
                   <td>
-                    <input type="text" name="manageremail" id="manageremail"/>
+                    <input type="text" name="age" id="age"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th class="text-light">Max Team Members</th>
-                  <td class="text-right">
-                    <input type="number" name="maxteammembers" id="maxteammembers"/>
-                    <p class="d-inline-block text-light">If league is changed, becomes max players for changed league.</p>
+                  <th class="text-light">Gender</th>
+                  <td>
+                    <input type="text" name="gender" id="gender" />
                   </td>
                 </tr>
                 <tr class="instrYes">
-                  <th class="text-light">Minimum Member Age</th>
+                  <th class="text-light">Phone</th>
                   <td>
-                    <input type="number" name="minmemberage" id="minmemberage"/>
-                  </td>
-                </tr>
-                <tr class="instrYes">
-                  <th class="text-light">Maximum Member Age</th>
-                  <td>
-                    <input type="number" name="maxmemberage" id="maxmemberage"/>
-                  </td>
-                </tr>
-                <tr class="instrYes">
-                  <th class="text-light">Team Gender</th>
-                  <td>
-                    <input type="text" name="teamgender" id="teamgender"/>
+                    <input type="text" name="phone" id="phone"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Region</th>
                   <td id="regionholder">
-                    <select type="text" name="region" id="region">
-                    </select>
-                    <p class="d-inline-block text-light">Options are based upon League.</p>
+                    <input type="text" name="region" id="region" readonly />
                   </td>
                 </tr>
               </table>
@@ -159,11 +138,6 @@
               <div id="msgDiv"> 
                 <ul class="list-unstyled" id="ulMsg"></ul>
               </div>
-              <p class="h2">Players</p>
-              <table
-                class="table table-bordered border-light text-dark" name="playertbl"
-                id="players"
-              ></table>
             </div>
             <button
               type="button"
@@ -176,7 +150,12 @@
               class="btn btn-lg btn-secondary col-1 offset-md-1"
               id="update"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
               Update
-              </button>
+            </button>
+            <button
+                class="btn btn-lg btn-secondary col-1 offset-md-1"
+                id="update"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
+                Delete
+            </button>
           </div>
         </div>
       </form>
@@ -196,7 +175,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
       crossorigin="anonymous"
     ></script>
-    <script src="scripts/details.js"></script>
+    <script src="scripts/player.js"></script>
 
     <!-- End Body -->
   </body>
