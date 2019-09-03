@@ -3,34 +3,25 @@ $(function()
     let objs;
     let urlParams = new URLSearchParams(location.search);
     let team = urlParams.get("id");
-    let player = urlParams.get("member");
-    let playerNum;
     $.urlParam = function(name)
     {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
     }
-
     $.getJSON("/api/teams/" + team, function(teamList) 
     {
         // the returned data is available in an "already parsed"
         // parameter named data
         // take a few minutes to examine the attached .json file
         objs = teamList;
-        $("#memberid").val(objs.Members[player].MemberId);
-        $("#membername").val(objs.Members[player].MemberName);
-        $("#email").val(objs.Members[player].Email);
-        $("#contactname").val(objs.Members[player].ContactName);
-        $("#age").val(objs.Members[player].Age);
-        $("#gender").val(objs.Members[player].Gender);
-        $("#phone").val(objs.Members[player].Phone);
-        $("#region").val(objs.Members[player].Region);
+        showRegionOptions(objs);
+        showGenderOptions(objs);
+        $("#teamname").val(objs.TeamName);
 
-        playerNum = objs.Members[player].MemberId;
-    });
-
-    $("#update").click(function() 
+        $("#addplayer").click(function() 
         {
+        console.log(objs)
+        console.log(team)
           let isok = validateForm();
           if (isok == false)
             {
@@ -40,33 +31,65 @@ $(function()
             {
                 url: "/api/teams/" + team + "/members",
                 data: $("#playerInfo").serialize(),
-                method: 'PUT',
+                method: 'POST',
                 success: function() {
-                alert("Team has been updated");
+                alert("Player has been added");
                 document.location.href = "teamsearch.html";
                 }
             });
         })
-
-        $("#delete").click(function() 
+    });
+        $("#cancel").click(function() 
         {
-            if (confirm('Press OK to confirm deletion!')) 
-            {
-                $.ajax(
-                    {
-                        url: "/api/teams/" + team + "/members/" + playerNum,
-                        data: $("#playerInfo").serialize(),
-                        method: 'DELETE',
-                        success: function() {
-                        alert("Player has been deleted.");
-                        document.location.href = "teamsearch.html";
-                        }
-                    });
-            }
+            document.location.href = "teamsearch.html";
         })
 })
 
+function showRegionOptions(objs)
+{
+    if (objs.Region == "All")
+      {
+        $("#region").append(
+          "<option value='All'>" + "All" + "</option>"
+        )
+        for (let i = 0; i < regionSelect.length; i++)
+        {
+          if (leaguesSelect[i].Region == regionSelect[i].Code)
+          { 
+            $("#region").append( 
+              "<option value=" +
+              regionSelect[i].Code +
+              ">" +
+              regionSelect[i].Name +
+              "</option>"
+            )
+          }
+        }
+      } else {        
+          $("#region").append( 
+            "<option value=" +
+            objs.Region +
+            ">" +
+            objs.Region +
+            "</option>"
+          )
+        }
+}
 
+function showGenderOptions(objs)
+{
+    if (objs.TeamGender == "Any")
+    {
+        $("#gender").append(
+            "<option value=" + "Male" + ">" + "Male" + "</option>" +
+            "<option value=" + "Female" + ">" + "Female" + "</option>" + 
+            "<option value=" + "Any" + ">" + "Any" + "</option>"
+        )
+    } else {
+        $("#gender").append(
+            "<option value=" + objs.TeamGender + ">" + objs.TeamGender + "</option>")
+    }
+}
 function validateForm()
 { 
     let errMsg = [];

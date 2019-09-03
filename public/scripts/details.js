@@ -12,7 +12,17 @@ $(function()
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
   }
-  console.log(TeamId);
+
+  $("#cancel").click(function() 
+  {
+    document.location.href = "teamsearch.html";
+  });
+
+  $("#addplayer").click(function() 
+  {
+    document.location.href = "addplayer.html?id=" + TeamId;
+  })
+
   $.getJSON("/api/teams/" + TeamId, function(teams) 
   {
     // the returned data is available in an "already parsed"
@@ -58,9 +68,7 @@ $(function()
 
   $("#update").click(function() 
   {
-    console.log("check")
     let isok = validateForm(leaguesSelect);
-    console.log("is it ok?")
       if (isok == false)
       {
         return false;
@@ -207,10 +215,6 @@ function showPlayers(objs)
         "</td></tr>";
         $("#players tbody").append(markup);
       };
-      $("#reset").click(function() 
-      {
-        $('#courseInfo')[0].reset();
-      });
     }
 }
 
