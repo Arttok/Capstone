@@ -23,6 +23,26 @@ $(function()
     createMngrTable(objs);
       //"courses.html?" + "instr=" + $.urlParam('instr') );
 
+    $.getJSON("/api/leagues", function(leagues) 
+    {
+      // the returned data is available in an "already parsed"
+      // parameter named data
+      // take a few minutes to examine the attached .json file
+      leaguesSelect = leagues
+      let x;
+      $("#leaguecode").empty();
+      for (var i = 0; i < leaguesSelect.length; i++) 
+      {
+        $("#leaguecode").append(
+          "<option value=" +
+            leaguesSelect[i].Code +
+            ">" +
+            leaguesSelect[i].Name +
+            "</option>"
+        );
+      }
+    });
+
     $.getJSON("/api/regions", function(region) 
     {
       regionSelect = region
@@ -36,26 +56,6 @@ $(function()
       }); 
     })
   })
-
-  $.getJSON("/api/leagues", function(leagues) 
-  {
-    // the returned data is available in an "already parsed"
-    // parameter named data
-    // take a few minutes to examine the attached .json file
-    leaguesSelect = leagues
-    let x;
-    $("#leaguecode").empty();
-    for (var i = 0; i < leaguesSelect.length; i++) 
-    {
-      $("#leaguecode").append(
-        "<option value=" +
-          leaguesSelect[i].Code +
-          ">" +
-          leaguesSelect[i].Name +
-          "</option>"
-      );
-    }
-  });
 
   $("#update").click(function() 
   {

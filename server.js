@@ -634,6 +634,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
  app.delete("/api/teams/:teamid/members/:memberid", urlencodedParser, function (req, res) {
     let teamId = req.params.teamid;
     let memberId = req.params.memberid;
+    console.log("Delete Member Request")
     console.log("Received a DELETE request for member " + memberId + " on team " + teamId);
 
     // find the team
@@ -650,21 +651,23 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 
     // find existing member on the team
     let foundAt = team.Members.findIndex( m => m.MemberId == memberId );
+    console.log("found at " + foundAt)
 
     let match = null;
     // delete the member if found
     if (foundAt != -1)
     {
-        match = team.Members.splice(foundAt, 1);       
+        match = team.Members.splice(foundAt, 1);  
+        console.log("not found")     
     }
 
     fs.writeFileSync(__dirname + "/data/teams.json", JSON.stringify(data));
    
-    /*if (match != null)
+    if (match != null)
     {
         console.log("Member deleted:");
         console.log("Member name: " + match.MemberName);
-    }*/
+    }
     // Note:  even if we didn't find them, send a 200 back because they are gone
     res.status(200).send();
  })
