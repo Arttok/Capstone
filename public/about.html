@@ -1,0 +1,227 @@
+<!--Details Page-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Class Details</title>
+    <meta charset="utf-8" />
+
+    <!-- FontAwesome Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/dbcee74e1c.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- External CSS-->
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+
+    <!--FavICON-->
+    <link rel="shortcut icon" href="images/esportsIcon.jpg" />
+  </head>
+  <body class="bg-info text-light">
+    <!-- Header / Navigation section-->
+    <nav>
+      <div
+        class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 text-light bg-dark"
+      >
+        <div class="h5 my-0 ml-5 mr-md-auto font-weight-normal">
+          <a class="btn btn-outline-primary text-light" href="index.html">
+            Home
+          </a>
+        </div>
+        <div class="col-5 ml-0 pl-0 h4">Hart-eSports</div>
+        <div class="mr-5 pl-3">
+          <!-- Dropdown Menu bar that list various other sections of the page-->
+          <div
+            class="dropdown show bg-dark d-inline text-light btn-outline-primary"
+          >
+            <a
+              class="btn text-light bg-dark btn-outline-primary dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Menu
+            </a>
+            <div
+              class="dropdown-menu bg-dark text-light btn-outline-primary"
+              aria-labelledby="dropdownMenuLink"
+            >
+              <a class="dropdown-item btn text-light mask" href="index.html">
+                Home
+              </a>
+              <a
+                class="dropdown-item btn text-light mask"
+                href="teamsearch.html"
+              >
+                Search Teams
+              </a>
+              <a class="dropdown-item btn text-light mask" href="teamadd.html">
+                Add a Team
+              </a>
+              <a class="dropdown-item btn text-light mask" href="#">
+                About US
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!--Main section of the page. Has the menu bar as well as table that is generated via JS-->
+    <main>
+        <h1 class="text-center">About Us</h1>
+        <p class="text-center">Here you can view all of the other previous tournaments that have happened. Clicking on each tournament will open up a link so that you can watch the tournament.</p>
+
+        <!--Row 1-->
+        <div class="row ml-4">
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournA" data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/wowArena.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 World Championship, Grand Finals of the 2018 AWC BlizzCon.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournB" data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/wowArena.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2017 World Championship, Grand Finals of the AWC BlizzCon.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournC" data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/overwatch.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 London Spitfire vs Shanghai Dragons!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournD" data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/COD.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 London Spitfire vs Shanghai Dragons!</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+        <!--Row 2-->
+        <div class="row ml-4">
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournE">
+                    <img class="card-img-top cardmodal" src="images/dota2icon.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournF">
+                    <img class="card-img-top cardmodal" src="images/wowArena.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournG"data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/overwatch.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 London Spitfire vs Shanghai Dragons!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournH"data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/COD.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 London Spitfire vs Shanghai Dragons!</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+        <!--Row 3-->
+        <div class="row ml-4">
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournI">
+                    <img class="card-img-top cardmodal" src="images/wowArena.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournJ" data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/COD.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 London Spitfire vs Shanghai Dragons!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournK">
+                    <img class="card-img-top cardmodal" src="images/wowArena.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column pt-3">
+                <div class="card mr-3" id="tournL"data-toggle="modal" data-target="#exampleModal">
+                    <img class="card-img-top" src="images/overwatch.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text text-dark">2018 London Spitfire vs Shanghai Dragons!</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalHeader"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center" id="videoHolder">
+            </div>
+            <div class="text-center" id="videotext"></div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/about.js"></script>
+
+    <!-- End Body -->
+  </body>
+</html>

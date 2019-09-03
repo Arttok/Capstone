@@ -28,6 +28,10 @@ body
     width: 100%;
 }
 
+.card 
+{
+  width: 18rem;
+}
 
 /*Modal Styles */
 /* Style the Image Used to Trigger the Modal */
