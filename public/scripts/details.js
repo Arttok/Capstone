@@ -78,11 +78,23 @@ $(function()
     });
   })
 
-  $("#reset").click(function() 
+  $("#delete").click(function() 
   {
-      $('#courseInfo')[0].reset();
-  });
-
+    if (confirm('Press OK to confirm deletion!')) 
+    {
+      $.ajax(
+        {
+          url: "/api/teams/" + TeamId,
+          data: "teamid=" + TeamId + "&" + $("#teamInfo").serialize(),
+          method: 'DELETE',
+          success: function() 
+          {
+            alert("Team has been Deleted");
+            document.location.href = "teamsearch.html";
+          }
+        })
+    }
+  })
 })
 
 

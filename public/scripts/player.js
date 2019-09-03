@@ -56,17 +56,19 @@ $(function()
 
         $("#delete").click(function() 
         {
-            console.log(playerNum)
-            $.ajax(
-                {
-                    url: "/api/teams/" + team + "/members/" + playerNum,
-                    data: $("#playerInfo").serialize(),
-                    method: 'DELETE',
-                    success: function() {
-                    alert("Player has been deleted.");
-                    document.location.href = "teamsearch.html";
-                    }
-                });
+            if (confirm('Press OK to confirm deletion!')) 
+            {
+                $.ajax(
+                    {
+                        url: "/api/teams/" + team + "/members/" + playerNum,
+                        data: $("#playerInfo").serialize(),
+                        method: 'DELETE',
+                        success: function() {
+                        alert("Player has been deleted.");
+                        document.location.href = "teamsearch.html";
+                        }
+                    });
+            }
         })
 })
 
