@@ -179,7 +179,7 @@ function showPlayers(objs)
 
   if (objs.Members.length == 0) 
   {
-    $("#players").html("<table class=text-light> <tr><td>No Players have Registered</td></td> </table>");
+    $("#players").html("<table> <tr><td class='text-light'>No Players have Registered</td></td> </table>");
   } else {
       let tBody = $("<tbody class= text-light>");
       $("#players").append(tBody);
