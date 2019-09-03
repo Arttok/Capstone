@@ -4,7 +4,7 @@ $(function()
     let urlParams = new URLSearchParams(location.search);
     let team = urlParams.get("id");
     let player = urlParams.get("member");
-    
+    let playerNum;
     $.urlParam = function(name)
     {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -25,6 +25,9 @@ $(function()
         $("#gender").val(objs.Members[player].Gender);
         $("#phone").val(objs.Members[player].Phone);
         $("#region").val(objs.Members[player].Region);
+
+        playerNum = objs.Members[player].MemberId;
+        console.log("player number " + playerNum)
     });
 
     $("#update").click(function() 
@@ -49,6 +52,23 @@ $(function()
                 document.location.href = "teamsearch.html";
                 }
             });
+        })
+
+        $("#delete").click(function() 
+        {
+            if (confirm('Press OK to confirm deletion!')) 
+            {
+                $.ajax(
+                    {
+                        url: "/api/teams/" + team + "/members/" + playerNum,
+                        data: $("#playerInfo").serialize(),
+                        method: 'DELETE',
+                        success: function() {
+                        alert("Player has been deleted.");
+                        document.location.href = "teamsearch.html";
+                        }
+                    });
+            }
         })
 })
 
