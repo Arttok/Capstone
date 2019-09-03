@@ -40,20 +40,20 @@ $(function()
             "</option>"
         );
       }
-    });
 
-    $.getJSON("/api/regions", function(region) 
-    {
-      regionSelect = region
-      createLeagueTable(regionSelect, leaguesSelect);
-      $("#maxteammembers").val(objs.MaxTeamMembers);
-      $("#leaguecode").val(objs.League).change();
-
-      $("#leaguecode").change(function()
+      $.getJSON("/api/regions", function(region) 
       {
+        regionSelect = region
         createLeagueTable(regionSelect, leaguesSelect);
-      }); 
-    })
+        $("#maxteammembers").val(objs.MaxTeamMembers);
+        $("#leaguecode").val(objs.League).change();
+
+        $("#leaguecode").change(function()
+        {
+          createLeagueTable(regionSelect, leaguesSelect);
+        }); 
+      })
+    });
   })
 
   $("#update").click(function() 
@@ -77,22 +77,23 @@ $(function()
     });
   })
 
-  $("#delete").click(function() 
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+
+  $("#confirm").click(function() 
   {
-    if (confirm('Press OK to confirm deletion!')) 
-    {
-      $.ajax(
+    $.ajax(
+      {
+        url: "/api/teams/" + TeamId,
+        data: "teamid=" + TeamId + "&" + $("#teamInfo").serialize(),
+        method: 'DELETE',
+        success: function() 
         {
-          url: "/api/teams/" + TeamId,
-          data: "teamid=" + TeamId + "&" + $("#teamInfo").serialize(),
-          method: 'DELETE',
-          success: function() 
-          {
-            alert("Team has been Deleted");
-            document.location.href = "teamsearch.html";
-          }
-        })
-    }
+          alert("Team has been Deleted");
+          document.location.href = "teamsearch.html";
+        }
+      })
   })
 })
 

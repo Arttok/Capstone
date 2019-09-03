@@ -16,14 +16,14 @@
       crossorigin="anonymous"
     />
 
-    <!-- External CSS
-    <link rel="stylesheet" type="text/css" href="css/style.css" />-->
-
     <!--FavICON-->
-    <link rel="shortcut icon" href="images/esportsIcon.jpg" />
-  
-    
+    <link rel="shortcut icon" href="images/esportsIcon.jpg" />   
+
+     <!-- External CSS-->
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+
   </head>
+
   <body class="bg-info text-light">
     <!-- Header / Navigation section-->
     <nav>
@@ -82,7 +82,7 @@
       <form class="col-12 pb-3" id="teamInfo">
         <!--Should be Post but not due to github / live server reasons.-->
         <div class="col-12">
-          <div class="text-center">
+          <div class="text-left">
             <p class="h2 boldunder">
               Team Information
             </p>
@@ -93,7 +93,7 @@
                 <tr class="instrYes">
                   <th class="text-light">Team Name</th>
                   <td>
-                    <input type="text" name="teamname" id="teamname" readonly/>
+                    <input type="text" name="teamname" id="teamname"/>
                   </td>
                 </tr>
                 <tr class="instrYes">
@@ -123,7 +123,7 @@
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Max Team Members</th>
-                  <td class="text-right">
+                  <td class="text-left">
                     <input type="number" name="maxteammembers" id="maxteammembers"/>
                     <p class="d-inline-block text-light">If league is changed, becomes max players for changed league.</p>
                   </td>
@@ -143,14 +143,14 @@
                 <tr class="instrYes">
                   <th class="text-light">Team Gender</th>
                   <td>
-                    <select class="d-inline-block" name="gender" id="gender">
+                    <select class="d-inline-block" name="teamgender" id="teamgender">
                     </select> 
                   </td>
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Region</th>
                   <td id="regionholder">
-                    <select type="text" name="region" id="region">
+                    <select name="region" id="region">
                     </select>
                     <p class="d-inline-block text-light">Options are based upon League.</p>
                   </td>
@@ -168,34 +168,50 @@
             >
               Cancel
             </button>
-            <button
-              class="btn btn-lg btn-secondary col-1 offset-md-1"
-              id="update"><!--If made into a button I get html error due to href. Keeping as an <a> due to this.-->
-              Update
-            </button>
-            <button
-                class="btn btn-lg btn-secondary col-1 offset-md-1"
-                id="delete">
-                Delete
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addteam">
+                Add Team
             </button>
           </div>
         </div>
       </form>
     </main>
 
+    <!-- Modal -->
+    <div class="modal fade" id="addteam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog text-dark" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Team</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Press Confirm to add the Team.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirm">Confirm</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
-      crossorigin="anonymous"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+    crossorigin="anonymous"
     ></script>
     <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
-      crossorigin="anonymous"
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+    crossorigin="anonymous"
     ></script>
     <script src="scripts/teamadd.js"></script>
 
