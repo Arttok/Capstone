@@ -21,30 +21,25 @@
 
     <!--FavICON-->
     <link rel="shortcut icon" href="images/esportsIcon.jpg" />
-  
-    
   </head>
   <body class="bg-info text-light">
     <!-- Header / Navigation section-->
     <nav>
       <div
-      class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 text-light bg-dark"
+        class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 text-light bg-dark"
       >
-      <div class="h5 my-0 ml-5 mr-md-auto font-weight-normal">
+        <div class="h5 my-0 ml-5 mr-md-auto font-weight-normal">
           <a class="btn btn-outline-primary text-light" href="index.html">
-              Home
+            Home
           </a>
-          <a class="btn btn-outline-primary text-light ml-5" href="#">
-              Manager
-          </a>
-      </div>
-      <div class="col-5 ml-0 pl-0 h4">Hart-eSports</div>
-      <div class="mr-5 pl-3">
+        </div>
+        <div class="col-5 ml-0 pl-0 h4">Hart-eSports</div>
+        <div class="mr-5 pl-3">
           <!-- Dropdown Menu bar that list various other sections of the page-->
           <div
-          class="dropdown show bg-dark d-inline text-light btn-outline-primary"
+            class="dropdown show bg-dark d-inline text-light btn-outline-primary"
           >
-          <a
+            <a
               class="btn text-light bg-dark btn-outline-primary dropdown-toggle"
               href="#"
               role="button"
@@ -52,30 +47,33 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-          >
+            >
               Menu
-          </a>
-          <div
+            </a>
+            <div
               class="dropdown-menu bg-dark text-light btn-outline-primary"
               aria-labelledby="dropdownMenuLink"
-          >
+            >
               <a class="dropdown-item btn text-light mask" href="index.html">
-                  Home
+                Home
               </a>
-              <a class="dropdown-item btn text-light mask" href="teamsearch.html">
-                  Search Teams
+              <a
+                class="dropdown-item btn text-light mask"
+                href="teamsearch.html"
+              >
+                Search Teams
               </a>
               <a class="dropdown-item btn text-light mask" href="teamadd.html">
-                  Add a Team
+                Add a Team
               </a>
               <a class="dropdown-item btn text-light mask" href="#">
-                  About US
+                About US
               </a>
+            </div>
           </div>
-          </div>
+        </div>
       </div>
-      </div>
-  </nav>
+    </nav>
 
     <!--Main section of the page. Has the menu bar as well as table that is generated via JS-->
     <main>
@@ -87,15 +85,21 @@
               Player Information
             </p>
             <div class="pt-3">
-                <table
-                    class="table table-bordered border-light text-dark text-left"
-                    id="playertbl">
+              <table
+                class="table table-bordered border-light text-dark text-left"
+                id="playertbl"
+              >
                 <tr class="instrYes">
                   <th class="text-light">Player Name</th>
                   <td>
-                    <input type="text" name="memberid" id="memberid" class="d-none">
-                    <input type="text" name="membername" id="membername"/>
-                  </td> 
+                    <input
+                      type="text"
+                      name="memberid"
+                      id="memberid"
+                      class="d-none"
+                    />
+                    <input type="text" name="membername" id="membername" />
+                  </td>
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Player Email</th>
@@ -106,25 +110,25 @@
                 <tr class="instrYes">
                   <th class="text-light">Contact Name</th>
                   <td>
-                    <input type="text" name="contactname" id="contactname"/>
+                    <input type="text" name="contactname" id="contactname" />
                   </td>
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Age</th>
                   <td>
-                    <input type="text" name="age" id="age"/>
+                    <input type="text" name="age" id="age" />
                   </td>
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Gender</th>
                   <td>
-                    <input type="text" name="gender" id="gender" readonly/>
+                    <input type="text" name="gender" id="gender" readonly />
                   </td>
                 </tr>
                 <tr class="instrYes">
                   <th class="text-light">Phone</th>
                   <td>
-                    <input type="text" name="phone" id="phone"/>
+                    <input type="text" name="phone" id="phone" />
                   </td>
                 </tr>
                 <tr class="instrYes">
@@ -134,8 +138,9 @@
                   </td>
                 </tr>
               </table>
-              <br/>
-              <div id="msgDiv"> 
+
+              <br />
+              <div id="msgDiv">
                 <ul class="list-unstyled" id="ulMsg"></ul>
               </div>
             </div>
@@ -148,13 +153,15 @@
             </button>
             <button
               class="btn btn-lg btn-secondary col-1 offset-md-1"
-              id="update">
+              id="update"
+            >
               Update
             </button>
             <button
-                class="btn btn-lg btn-secondary col-1 offset-md-1"
-                id="delete">
-                Delete
+              class="btn btn-lg btn-secondary col-1 offset-md-1"
+              id="delete"
+            >
+              Delete
             </button>
           </div>
         </div>
