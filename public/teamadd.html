@@ -16,8 +16,8 @@
       crossorigin="anonymous"
     />
 
-    <!-- External CSS-->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- External CSS
+    <link rel="stylesheet" type="text/css" href="css/style.css" />-->
 
     <!--FavICON-->
     <link rel="shortcut icon" href="images/esportsIcon.jpg" />
@@ -143,7 +143,8 @@
                 <tr class="instrYes">
                   <th class="text-light">Team Gender</th>
                   <td>
-                    <input type="text" name="teamgender" id="teamgender"/>
+                    <select class="d-inline-block" name="gender" id="gender">
+                    </select> 
                   </td>
                 </tr>
                 <tr class="instrYes">
@@ -159,11 +160,6 @@
               <div id="msgDiv"> 
                 <ul class="list-unstyled" id="ulMsg"></ul>
               </div>
-              <p class="h2">Players</p>
-              <table
-                class="table table-bordered border-light text-dark" name="playertbl"
-                id="players"
-              ></table>
             </div>
             <button
               type="button"
@@ -201,7 +197,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
       crossorigin="anonymous"
     ></script>
-    <script src="scripts/details.js"></script>
+    <script src="scripts/teamadd.js"></script>
 
     <!-- End Body -->
   </body>

@@ -29,7 +29,6 @@ $(function()
       // parameter named data
       // take a few minutes to examine the attached .json file
       leaguesSelect = leagues
-      let x;
       $("#leaguecode").empty();
       for (var i = 0; i < leaguesSelect.length; i++) 
       {
