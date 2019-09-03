@@ -6,9 +6,9 @@ $(document).ready(function() {
 
 function modalShow ()
 {
-    console.log("hi")
-    // Get the modal
-    var modal = $('#myModal');
+    $('#modal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
 
     // Get the image and insert it inside the modal - use its "alt" text as a caption
     var tournA = $('#tournA');
@@ -23,17 +23,21 @@ function modalShow ()
     var tournJ = $('#tournJ');
     var tournK = $('#tournK');
     var tournL = $('#tournL');
-
-    tournA.onclick = function()
+    
+    
+    var captionText = document.getElementById("caption");
+    tournA.on("click", function()
     {
-        modal.style.display = "block";
-        modalImg.src = "images/eSportGraphAlrg.jpg";
-    }
-    tournB.onclick = function()
+        modalHeader.innerHTML = "WoW Arena 2018";
+        videoHolder.innerHTML = '<iframe width="360" height="240" src="https://www.youtube.com/embed/nJE22low3K0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        videotext.innerHTML = "2018 WoW Championship Grand Finals! Come watch Method Orange vs The Gosu Crew!"
+    })
+    tournB.on("click", function()
     {
-        modal.style.display = "block";
-        modalImg.src = "images/eSportGraphBlrg.jpg";
-    }
+        modalHeader.innerHTML = "WoW Arena 2017";
+        videoHolder.innerHTML = '<iframe width="360" height="240" <iframe width="560" height="315" src="https://www.youtube.com/embed/PazufneUQTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        videotext.innerHTML = "2017 WoW Championship Grand Finals! Cloud9 vs Tempo Storm!"
+    })
     tournC.onclick = function()
     {
         modal.style.display = "block";
