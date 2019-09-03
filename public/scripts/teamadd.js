@@ -33,7 +33,7 @@ $(function()
     $("#gender").append(
         "<option value=" + "Male" + ">" + "Male" + "</option>" +
         "<option value=" + "Female" + ">" + "Female" + "</option>" + 
-        "<option value=" + "Non-Binary" + ">" + "Non-Binary" + "</option>"
+        "<option value=" + "Any" + ">" + "Any" + "</option>"
     )
 })
 
