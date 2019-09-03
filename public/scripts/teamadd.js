@@ -30,11 +30,36 @@ $(function()
         })
     })
 
-    $("#gender").append(
+    $("#teamgender").append(
         "<option value=" + "Male" + ">" + "Male" + "</option>" +
         "<option value=" + "Female" + ">" + "Female" + "</option>" + 
         "<option value=" + "Any" + ">" + "Any" + "</option>"
     )
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+      })
+
+    $("#confirm").click(function() 
+    {
+        console.log("check")
+        let isok = validateForm(leaguesSelect);
+        console.log("is it ok?")
+        if (isok == false)
+        {
+            return false;
+        }
+        $.ajax(
+        {
+            url: "/api/teams",
+            data: $("#teamInfo").serialize(),
+            method: 'POST',
+            success: function() {
+                alert("Team has been Added");
+                document.location.href = "teamsearch.html";
+                }
+        });
+    })
 })
 
 
@@ -79,4 +104,62 @@ function regionOptions(regionSelect, leaguesSelect)
       }
     }
   }
+}
+
+
+function validateForm(leaguesSelect)
+{ 
+    let errMsg = [];
+    if ($("#leaguecode").val().trim() == "")//validation for title
+    {
+        errMsg[errMsg.length] = "League is required";
+    }
+    if ($("#managername").val().trim() == "")//validation for title
+    {
+        errMsg[errMsg.length] = "Manager Name is required";
+    }
+    if ($("#managerphone").val().trim() == "") //validation for location
+    {
+        errMsg[errMsg.length] = "Manager Phone is required";
+    }
+    let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if (email.test($("#manageremail").val()) == false) //validation for start & end date.
+    {
+        errMsg[errMsg.length] = "Manager Email must be valid";
+    }
+    if ($("#maxteammembers").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Max Team Members needs to have a value.";
+    }
+    if ($("#minmemberage").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Min Member Age is required";
+    }
+    if ($("#maxmemberage").val().trim() == "") //validation for Meets
+    {
+        errMsg[errMsg.length] = "Max Member Age is required";
+    }
+    
+    for (let i = 0; i < leaguesSelect.length; i++) 
+    {
+      if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
+      {
+        maxLeagueMembers = leaguesSelect[i].MaxTeamMembers;
+        if (($("#maxteammembers").val()) > maxLeagueMembers)
+        {
+          errMsg[errMsg.length] = "Max Team Size is above League Max of " + maxLeagueMembers;
+        }
+      }
+    }
+
+    if (errMsg.length == 0)
+    {
+        return true;
+    }
+    $("#ulMsg").empty();//this is for msgDiv not
+    for(let i=0; i < errMsg.length; i++)
+    {
+        $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
+    }
+    return false;
 }
