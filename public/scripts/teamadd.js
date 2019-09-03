@@ -42,9 +42,7 @@ $(function()
 
     $("#confirm").click(function() 
     {
-        console.log("check")
         let isok = validateForm(leaguesSelect);
-        console.log("is it ok?")
         if (isok == false)
         {
             return false;

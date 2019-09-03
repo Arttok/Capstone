@@ -90,14 +90,14 @@
                 id="playertbl"
               >
                 <tr class="instrYes">
+                  <th class="text-light">Team Name</th>
+                  <td>
+                    <input name="teamname" id="teamname" readonly />
+                  </td>
+                </tr>
+                <tr class="instrYes">
                   <th class="text-light">Player Name</th>
                   <td>
-                    <input
-                      type="text"
-                      name="memberid"
-                      id="memberid"
-                      class="d-none"
-                    />
                     <input type="text" name="membername" id="membername" />
                   </td>
                 </tr>
@@ -122,7 +122,8 @@
                 <tr class="instrYes">
                   <th class="text-light">Gender</th>
                   <td>
-                    <input type="text" name="gender" id="gender" readonly />
+                    <select class="d-inline-block" name="gender" id="gender">
+                    </select>
                   </td>
                 </tr>
                 <tr class="instrYes">
@@ -134,7 +135,7 @@
                 <tr class="instrYes">
                   <th class="text-light">Region</th>
                   <td id="regionholder">
-                    <input type="text" name="region" id="region" readonly />
+                    <select name="region" id="region" readonly> </select>
                   </td>
                 </tr>
               </table>
@@ -152,16 +153,10 @@
               Cancel
             </button>
             <button
-              class="btn btn-lg btn-secondary col-1 offset-md-1"
-              id="update"
+              class="btn btn-lg btn-secondary col-2 offset-md-1"
+              id="addplayer"
             >
-              Update
-            </button>
-            <button
-              class="btn btn-lg btn-secondary col-1 offset-md-1"
-              id="delete"
-            >
-              Delete
+              Add Player
             </button>
           </div>
         </div>
@@ -182,7 +177,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
       crossorigin="anonymous"
     ></script>
-    <script src="scripts/player.js"></script>
+    <script src="scripts/addplayer.js"></script>
 
     <!-- End Body -->
   </body>
