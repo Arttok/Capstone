@@ -67,7 +67,7 @@ $(function()
             }
         })
 
-        $("#update").click(function() 
+        $("#cancel").click(function() 
         {
             document.location.href = "teamsearch.html";
         })
