@@ -8,51 +8,66 @@ $(function()
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
     }
-    $.getJSON("/api/teams/" + team, function(teamList) 
+
+    $.getJSON("/api/regions", function(region) 
     {
+        // the returned region is available in an "already parsed"
+        // parameter named region
+        // take a few minutes to examine the attached .json file
+        regionSelect = region
+        $.getJSON("/api/leagues", function(leagues) 
+        {
         // the returned data is available in an "already parsed"
         // parameter named data
         // take a few minutes to examine the attached .json file
-        objs = teamList;
-        showRegionOptions(objs);
-        showGenderOptions(objs);
-        $("#teamname").val(objs.TeamName);
+        leaguesSelect = leagues
+            $.getJSON("/api/teams/" + team, function(teamList) 
+            {
+                // the returned data is available in an "already parsed"
+                // parameter named data
+                // take a few minutes to examine the attached .json file
+                objs = teamList;
+                showRegionOptions(objs, regionSelect, leaguesSelect);
+                showGenderOptions(objs);
+                $("#teamname").val(objs.TeamName);
 
-        $("#addplayer").click(function() 
-        {
-        console.log(objs)
-        console.log(team)
-          let isok = validateForm();
-          if (isok == false)
-            {
-              return false;
-            }
-          $.ajax(
-            {
-                url: "/api/teams/" + team + "/members",
-                data: $("#playerInfo").serialize(),
-                method: 'POST',
-                success: function() {
-                alert("Player has been added");
-                document.location.href = "teamsearch.html";
-                }
+                $("#addplayer").click(function() 
+                {
+                console.log(objs)
+                console.log(team)
+                let isok = validateForm(objs);
+                if (isok == false)
+                    {
+                    return false;
+                    }
+                $.ajax(
+                    {
+                        url: "/api/teams/" + team + "/members",
+                        data: $("#playerInfo").serialize(),
+                        method: 'POST',
+                        success: function() {
+                        alert("Player has been added");
+                        document.location.href = "teamsearch.html";
+                        }
+                    });
+                })
             });
         })
-    });
-        $("#cancel").click(function() 
-        {
-            document.location.href = "teamsearch.html";
-        })
+    })
+    $("#cancel").click(function() 
+    {
+        document.location.href = "teamsearch.html";
+    })
 })
 
 /*This function shows the region available to the player based upon the team.
 *
 *@param ---region--- region selector.
 */
-function showRegionOptions(objs)
+function showRegionOptions(objs, regionSelect, leaguesSelect)
 {
     if (objs.Region == "All")
-      {
+    {
         $("#region").append(
           "<option value='All'>" + "All" + "</option>"
         )
@@ -69,7 +84,7 @@ function showRegionOptions(objs)
             )
           }
         }
-      } else {        
+    } else {        
           $("#region").append( 
             "<option value=" +
             objs.Region +
@@ -110,7 +125,7 @@ function showGenderOptions(objs)
 *@param ---maxmemberage--- max member age.
 *@param ---minmemberage--- min member age.
 */
-function validateForm()
+function validateForm(objs)
 { 
     let errMsg = [];
     if ($("#membername").val().trim() == "")//validation for title
@@ -124,6 +139,11 @@ function validateForm()
     if ($("#age").val().trim() == "") //validation for location
     {
         errMsg[errMsg.length] = "Age is required";
+    }
+
+    if ($("#age").val().trim() < objs.MinMemberAge || $("#age").val().trim() > objs.MaxMemberAge)
+    {
+        errMsg[errMsg.length] = "Age needs to be between: " + objs.MinMemberAge + " and " + objs.MaxMemberAge;
     }
     let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (email.test($("#email").val()) == false) //validation for start & end date.

@@ -1,6 +1,11 @@
 $(function() 
 {
-    $.getJSON("/api/leagues", function(leagues) 
+  $("#cancel").click(function() 
+    {
+        document.location.href = "teamsearch.html";
+    })
+
+  $.getJSON("/api/leagues", function(leagues) 
     {
         // the returned leagues is available in an "already parsed"
         // parameter named leagues

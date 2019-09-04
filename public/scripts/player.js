@@ -64,6 +64,11 @@ $(function()
                     });
             }
         })
+
+        $("#update").click(function() 
+        {
+            document.location.href = "teamsearch.html";
+        })
 })
 
 /*This function checks to make sure all the validaiton is correct.
