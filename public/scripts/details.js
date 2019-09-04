@@ -264,32 +264,32 @@ function showPlayers(objs)
 function validateForm(leaguesSelect, objs)
 { 
     let errMsg = [];
-    if ($("#leaguecode").val().trim() == "")//validation for title
+    if ($("#leaguecode").val().trim() == "")//validation for league
     {
         errMsg[errMsg.length] = "League is required";
     }
-    if ($("#managername").val().trim() == "")//validation for title
+    if ($("#managername").val().trim() == "")//validation for manager name
     {
         errMsg[errMsg.length] = "Manager Name is required";
     }
-    if ($("#managerphone").val().trim() == "") //validation for location
+    if ($("#managerphone").val().trim() == "") //validation for manager phone
     {
         errMsg[errMsg.length] = "Manager Phone is required";
     }
     let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    if (email.test($("#manageremail").val()) == false) //validation for start & end date.
+    if (email.test($("#manageremail").val()) == false) //validation for email.
     {
         errMsg[errMsg.length] = "Manager Email must be valid";
     }
-    if ($("#maxteammembers").val().trim() == "") //validation for Meets
+    if ($("#maxteammembers").val().trim() == "") //validation for max team member
     {
         errMsg[errMsg.length] = "Max Team Members needs to have a value.";
     }
-    if ($("#minmemberage").val().trim() == "") //validation for Meets
+    if ($("#minmemberage").val().trim() == "") //validation for min member age
     {
         errMsg[errMsg.length] = "Min Member Age is required";
     }
-    if ($("#maxmemberage").val().trim() == "") //validation for Meets
+    if ($("#maxmemberage").val().trim() == "") //validation for max member age
     {
         errMsg[errMsg.length] = "Max Member Age is required";
     }
@@ -299,7 +299,7 @@ function validateForm(leaguesSelect, objs)
       if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
       {
         maxLeagueMembers = leaguesSelect[i].MaxTeamMembers;
-        if (($("#maxteammembers").val()) > maxLeagueMembers)
+        if (($("#maxteammembers").val()) > maxLeagueMembers) //validaiton for max team members
         {
           errMsg[errMsg.length] = "Max Team Size is above League Max of " + maxLeagueMembers;
         }
@@ -320,6 +320,11 @@ function validateForm(leaguesSelect, objs)
       } else if ($("#teamgender").val() != objs.Members[i].Gender )
       {
         errMsg[errMsg.length] = "There is a conflict between player: " + objs.Members[i].MemberName + " gender and the new team gender of: " + $("#teamgender").val();
+      }
+
+      if ($("#minmemberage").val().trim() > objs.Members[i].Age || $("#maxmemberage").val().trim() < objs.Members[i].Age)
+      {
+        errMsg[errMsg.length] = "Invalde Team Age due to player age.";
       }
     }
     if (errMsg.length == 0)
