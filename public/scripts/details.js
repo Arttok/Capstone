@@ -77,14 +77,11 @@ $(function()
 
   $("#update").click(function() 
   {
-    alert("Update")
     let isok = validateForm(leaguesSelect, objs);
       if (isok == false)
       {
         return false;
       }
-      alert("Done validaiton")
-      console.log(TeamId)
       $.ajax(
       {
         url: "/api/teams",
@@ -103,7 +100,6 @@ $(function()
 
   $("#confirm").click(function() 
   {
-    console.log(TeamId)
     $.ajax(
       {
         url: "/api/teams/" + TeamId,
@@ -314,10 +310,7 @@ function validateForm(leaguesSelect, objs)
 
     for (let i=0; i < objs.Members.length; i++)
     {
-      if ($("#teamgender").val() == "Any")
-      {
-        console.log("make change, it is fine.")
-      } else if ($("#teamgender").val() != objs.Members[i].Gender )
+      if ($("#teamgender").val() != objs.Members[i].Gender )
       {
         errMsg[errMsg.length] = "There is a conflict between player: " + objs.Members[i].MemberName + " gender and the new team gender of: " + $("#teamgender").val();
       }
