@@ -120,20 +120,23 @@ function populateTableInfo(objs, tableHead, regionsSelect) {
   
     //if the user selects the all option from the dropdown.
     if (catatext == "All") {
+      noTeam();
       //shows all classes
       for (let i = 0; i < objs.length; i++) 
       {
         generateMarkUp(objs, i);
       }
     } else if  (catatext == "Male Only"){
+        noTeam();
         for (let i = 0; i < objs.length; i++) 
         {
-            if (objs[i].TeamGender == "Male") 
-                {
-                    generateMarkUp(objs, i);         
-                }
+          if (objs[i].TeamGender == "Male") 
+              {
+                  generateMarkUp(objs, i);         
+              }
         }
     } else if  (catatext == "Female Only"){
+      noTeam();
       for (let i = 0; i < objs.length; i++) 
       {
           if (objs[i].TeamGender == "Female") 
@@ -141,7 +144,25 @@ function populateTableInfo(objs, tableHead, regionsSelect) {
                   generateMarkUp(objs, i);         
               }
       }
-    } else if  (catatext == "D&D adventurers league"){
+    } else if  (catatext == "North America"){
+      noTeam();
+      for (let i = 0; i < objs.length; i++) 
+      {
+          if (objs[i].Region == "NA") 
+              {
+                  generateMarkUp(objs, i);          
+              }
+      }
+  } else if  (catatext == "European"){
+    noTeam();
+    for (let i = 0; i < objs.length; i++) 
+    {
+        if (objs[i].Region == "EU") 
+            {
+                generateMarkUp(objs, i);          
+            }
+    }
+  } else if  (catatext == "D&D adventurers league"){
       $("#DnDtxt").show();
       $("#DnDtxt").html("Wrong, sir! Wrong! Under section 37B of the contract signed by him, it states quite clearly that all offers shall become null and void if - and you can read it for yourself in this photostatic copy - 'I, the undersigned, shall forfeit all rights, privileges, and licenses herein and herein contained,' et cetera, et cetera... 'Fax mentis, incendium gloria cultum,' et cetera, et cetera... Memo bis punitor delicatum! It's all there! Black and white, clear as crystal! You tried to reference D&D! You picked the D&D option, which now has to be unselected and disabled, so you get... NOTHING!!! You lose! GOOD DAY, SIR! ");
       $("#teamsList").hide();
@@ -155,24 +176,9 @@ function populateTableInfo(objs, tableHead, regionsSelect) {
         window.location = "index.html";
       }, delay);  
 
-    } else if  (catatext == "North America"){
-        for (let i = 0; i < objs.length; i++) 
-        {
-            if (objs[i].Region == "NA") 
-                {
-                    generateMarkUp(objs, i);          
-                }
-        }
-    } else if  (catatext == "European"){
-      for (let i = 0; i < objs.length; i++) 
-      {
-          if (objs[i].Region == "EU") 
-              {
-                  generateMarkUp(objs, i);          
-              }
-      }
-    }else { 
+    } else { 
     //if the user selects any of the other options from the drop down besides all or choose option.
+    noTeam();
       for (let i = 0; i < objs.length; i++) 
       {
         if (objs[i].League == $("#leagueDropdown option:selected").val()) 
@@ -183,8 +189,15 @@ function populateTableInfo(objs, tableHead, regionsSelect) {
     }
   }
 
+  function noTeam()
+  {
+    $("#teamsList").hide();
+    $("#noTeam").show();
+  }
   function generateMarkUp(objs, i)
   {
+    $("#noTeam").hide();
+    $("#teamsList").show();
     //gets classes based upon dropdown info.
     let markup =
     "<tr><td>" +
