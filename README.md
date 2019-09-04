@@ -51,6 +51,8 @@ The ability to register a team for a league.
 ### About US
 Information about the different leagues, with video links.
 
+# Server
+Make sure you have node downloaded. To launch the server, type into the command prompt - node server.js. The website will then be http://localhost:8081/. To see the different pages, use the navigaiton link / buttons.
 
 # Page Highlights
 ### Home Page
