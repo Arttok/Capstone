@@ -10,7 +10,7 @@
 
 #homeText 
 {
-    width: 40rem;
+    width: 65rem;
 }
 
 .picText
@@ -41,7 +41,24 @@ body
     transition: 0.3s;
   }
   
-  #graphA:hover {opacity: 0.7;}
+#graphA:hover {opacity: 0.7;}
+
+#graphB {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#graphB:hover {opacity: 0.7;}
+
+#graphC {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#graphC:hover {opacity: 0.7;}
+
   
   /* The Modal (background) */
   .modal {

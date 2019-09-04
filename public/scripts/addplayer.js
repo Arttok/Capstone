@@ -45,6 +45,10 @@ $(function()
         })
 })
 
+/*This function shows the region available to the player based upon the team.
+*
+*@param ---region--- region selector.
+*/
 function showRegionOptions(objs)
 {
     if (objs.Region == "All")
@@ -76,6 +80,10 @@ function showRegionOptions(objs)
         }
 }
 
+/*This function gets the different gender options.
+*
+*@param ---gender--- gender selector.
+*/
 function showGenderOptions(objs)
 {
     if (objs.TeamGender == "Any")
@@ -90,6 +98,18 @@ function showGenderOptions(objs)
             "<option value=" + objs.TeamGender + ">" + objs.TeamGender + "</option>")
     }
 }
+
+/*This function checks to make sure all the validaiton is correct.
+*
+*@param ---leaguecode--- league code.
+*@param ---managername---manager name.
+*@param ---managerphone--- manager phone number.
+*@param ---manageremail---manager email.
+*@param ---maxteammembers--- max team members.
+*@param ---minmemberage---min team members.
+*@param ---maxmemberage--- max member age.
+*@param ---minmemberage--- min member age.
+*/
 function validateForm()
 { 
     let errMsg = [];

@@ -1,8 +1,8 @@
-<!--Details Page-->
+<!--About Page-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Class Details</title>
+    <title>Hart-eSports</title>
     <meta charset="utf-8" />
 
     <!-- FontAwesome Place your kit's code here -->
@@ -83,7 +83,7 @@
         <!--Row 1-->
         <div class="row ml-4">
             <div class="column pt-3">
-                <div class="card ml-5 mr-3" id="tournA" data-toggle="modal" data-target="#exampleModal">
+                <div class="card ml-3 mr-3" id="tournA" data-toggle="modal" data-target="#exampleModal">
                     <img class="card-img-top" src="images/wowArena.jpg" alt="Card image cap">
                     <div class="card-body">
                         <p class="card-text text-dark">2018 World Championship, Grand Finals of the 2018 AWC BlizzCon.</p>
@@ -119,7 +119,7 @@
         <!--Row 2-->
         <div class="row ml-4">
             <div class="column pt-3">
-                <div class="card ml-5 mr-3" id="tournE" data-toggle="modal" data-target="#exampleModal">
+                <div class="card ml-3 mr-3" id="tournE" data-toggle="modal" data-target="#exampleModal">
                     <img class="card-img-top cardmodal" src="images/dota2icon.jpg" alt="Card image cap">
                     <div class="card-body">
                         <p class="card-text text-dark">OG vs Liquid Game 1 | Grand Final The International 2019.</p>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="column pt-3">
-                <div class="card mr-3" id="tournG"data-toggle="modal" data-target="#exampleModal">
+                <div class="card mr-3" id="tournG" data-toggle="modal" data-target="#exampleModal">
                     <img class="card-img-top" src="images/overwatch.jpg" alt="Card image cap">
                     <div class="card-body">
                         <p class="card-text text-dark">Full Match | Chengdu Hunters vs. Los Angeles Gladiators | Stage 4</p>
@@ -155,7 +155,7 @@
         <!--Row 3-->
         <div class="row ml-4">
             <div class="column pt-3">
-                <div class="card ml-5 mr-3" id="tournI" data-toggle="modal" data-target="#exampleModal">
+                <div class="card ml-3 mr-3" id="tournI" data-toggle="modal" data-target="#exampleModal">
                     <img class="card-img-top cardmodal" src="images/league.jpg" alt="Card image cap">
                     <div class="card-body">
                         <p class="card-text text-dark">Finals | World Championship | Fnatic vs. Invictus Gaming (2018)</p>
@@ -190,18 +190,20 @@
     </main>
 
     <!-- Modal -->
-    <div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalHeader"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+              <div class="modal-header">
+                  <!--Intended to be blank. This is generated via js.-->
+                  <h1 class="modal-title" id="modalHeader"></h1>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body text-center" id="videoHolder">
+              </div>
+              <div class="text-center" id="videotext"></div>
             </div>
-            <div class="modal-body text-center" id="videoHolder">
-            </div>
-            <div class="text-center" id="videotext"></div>
         </div>
     </div>
 

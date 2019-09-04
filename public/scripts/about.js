@@ -1,9 +1,12 @@
 $(document).ready(function() {
     
     modalShow();
-    console.log("hello")
 });
 
+/*This function shows the modal with the correct videos based upon what card is selected..
+*
+*@param ---tournA - tournL --- card's.
+*/
 function modalShow ()
 {
     $('#modal').on('shown.bs.modal', function () {
@@ -24,8 +27,6 @@ function modalShow ()
     var tournK = $('#tournK');
     var tournL = $('#tournL');
     
-    
-    var captionText = document.getElementById("caption");
     tournA.on("click", function()
     {
         modalHeader.innerHTML = "WoW Arena 2018";

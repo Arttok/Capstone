@@ -122,22 +122,27 @@ function isThereAnyGenderChangeConflicts(newTeamGender, team)
 //custom Region validation conflict
 function isThereAnyRegionChangeConflicts(newTeamRegion, team)
 {
+    console.log(newTeamRegion)
     if (newTeamRegion == "Any")
     {
         // No conflict w/ team switching to coed
         return false;  
     } else 
     {
+        console.log("searching team member")
         for (let i = 0; i < team.Members.length; i++)
         {
+            console.log("checking team member " + i)
+            console.log(team.Members[i])
             // look for member whose gender would conflict with new team gender
-            if (team.Members[i].Region == newTeamRegion) 
+            if (team.Members[i].Region != newTeamRegion) 
             {
                 //console.log("Found member who is " + team.Members[i].Region + " on a team witching to " + newTeamRegion);
                 return true;  // found a conflict!
             }
         }
     }    
+    console.log("finished")
     return false; // no conflicts
 }
 
@@ -362,7 +367,7 @@ app.post("/api/teams", urlencodedParser, function (req, res) {
 app.put("/api/teams", urlencodedParser, function (req, res) {
     console.log("Received a PUT request to edit a team");
     console.log("BODY -------->" + JSON.stringify(req.body));
-
+    console.log(req.body.teamid)
     // assemble team information so we can validate it
     let team = {
         TeamId: req.body.teamid,
@@ -377,7 +382,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
         TeamGender: req.body.teamgender,
         Region: req.body.region
     };
-
+    console.log(team.TeamId)
     console.log("Performing team validation...")
     if (! isValidTeam(team))
     {
@@ -394,6 +399,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     let match = getMatchingTeamById(req.body.teamid, data)
     if (match == null)
 	{
+        console.log("Team not found...")
 		res.status(404).send("Not Found");
 		return;
     }
@@ -409,6 +415,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     // make sure new values for max members, min/max age, or gender
     // don't conflict with members already on team
 
+    console.log("Performing maxteammembers validation...")
     if ( Number(req.body.maxteammembers) < match.Members.length )
     {
         res.status(409).send("Team size too small based on current roster");
@@ -416,6 +423,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     }
     match.MaxTeamMembers = Number(req.body.maxteammembers);
 
+    console.log("Performing minmemberage validation...")
     if ( Number(req.body.minmemberage) > getMinAgeOfMember(match) )
     {
         res.status(409).send("Minimum age is greater than current member on team");
@@ -423,6 +431,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     }
     match.MinMemberAge = Number(req.body.minmemberage);
 
+    console.log("Performing maxmemberage validation...")
     if ( Number(req.body.maxmemberage) < getMaxAgeOfMember(match) )
     {
         res.status(409).send("Maximum age is less than current member on team");
@@ -430,6 +439,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     }
     match.MaxMemberAge = Number(req.body.maxmemberage);
 
+    console.log("Performing teamgender validation...")
     if ( isThereAnyGenderChangeConflicts(req.body.teamgender, match) )
     {
         res.status(409).send("Gender change conflicts with current member on team");
@@ -437,6 +447,7 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
     }
     match.TeamGender = req.body.teamgender;
 
+    console.log("Performing region validation...")
     if ( isThereAnyRegionChangeConflicts(req.body.region, match) )
     {
         res.status(409).send("Region change conflicts with current member on team");
@@ -446,8 +457,8 @@ app.put("/api/teams", urlencodedParser, function (req, res) {
 
     fs.writeFileSync(__dirname + "/data/teams.json", JSON.stringify(data));
    
-    //console.log("Team updated!");
-	//logOneTeam(match);
+    console.log("Team updated!");
+	logOneTeam(match);
     res.status(200).send();
  })
 

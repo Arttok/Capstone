@@ -3,35 +3,44 @@ $(document).ready(function() {
         modalShow();
 });
 
+/*This function shows the modal.
+*
+*@param ---leaguecode--- league code.
+*@param ---graphA---graph A.
+*@param ---graphB--- graph B
+*@param ---graphC---graph C
+*@param ---img01--- modal image..
+*@param ---caption---modal caption.
+*/
 function modalShow ()
 {
     // Get the modal
     var modal = document.getElementById("myModal");
 
     // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var imgA = document.getElementById("graphA");
-    var imgB = document.getElementById("graphB");
-    var imgC = document.getElementById("graphC");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
-    imgA.onclick = function()
+    var imgA = $("#graphA");
+    var imgB = $("#graphB");
+    var imgC = $("#graphC");
+    var modalImg = $("#img01");
+    var captionText = $("#caption");
+    imgA.click(function()
     {
         modal.style.display = "block";
-        modalImg.src = "images/eSportGraphAlrg.jpg";
-        captionText.innerHTML = this.alt;
-    }
-    imgB.onclick = function()
+        modalImg.attr("src", "images/eSportGraphAlrg.jpg");
+        captionText.html(this.alt);
+    })
+    imgB.click(function()
     {
         modal.style.display = "block";
-        modalImg.src = "images/eSportGraphBlrg.jpg";
-        captionText.innerHTML = this.alt;
-    }
-    imgC.onclick = function()
+        modalImg.attr("src", "images/eSportGraphBlrg.jpg");
+        captionText.html(this.alt);
+    })
+    imgC.click(function()
     {
         modal.style.display = "block";
-        modalImg.src = "images/eSportGraphClrg.jpg";
-        captionText.innerHTML = this.alt;
-    }
+        modalImg.attr("src", "images/eSportGraphClrg.jpg");
+        captionText.html(this.alt);
+    })
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 

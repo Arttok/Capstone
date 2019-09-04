@@ -2,8 +2,8 @@ $(function()
 {
     $.getJSON("/api/leagues", function(leagues) 
     {
-        // the returned data is available in an "already parsed"
-        // parameter named data
+        // the returned leagues is available in an "already parsed"
+        // parameter named leagues
         // take a few minutes to examine the attached .json file
         leaguesSelect = leagues;
         $("#leaguecode").empty();
@@ -20,6 +20,9 @@ $(function()
 
         $.getJSON("/api/regions", function(region) 
         {
+          // the returned region is available in an "already parsed"
+          // parameter named region
+          // take a few minutes to examine the attached .json file
             regionSelect = region
             regionOptions(regionSelect, leaguesSelect);
 
@@ -30,6 +33,7 @@ $(function()
         })
     })
 
+    //displays the 3 different options that are available for gender.
     $("#teamgender").append(
         "<option value=" + "Male" + ">" + "Male" + "</option>" +
         "<option value=" + "Female" + ">" + "Female" + "</option>" + 
@@ -40,6 +44,7 @@ $(function()
         $('#myInput').trigger('focus')
       })
 
+    //confirm button to update team.
     $("#confirm").click(function() 
     {
         let isok = validateForm(leaguesSelect);
@@ -61,6 +66,12 @@ $(function()
 })
 
 
+/*This function gets the different region options that are available.
+*This function also displays the max team player for the league if changed.
+*
+*@param ---leaguecode--- is the dropdown.
+*@param ---maxteammembers--- setting the max team members based upon the league.
+*/
 function regionOptions(regionSelect, leaguesSelect)
 {
   $("#region").empty();
@@ -104,7 +115,17 @@ function regionOptions(regionSelect, leaguesSelect)
   }
 }
 
-
+/*This function checks to make sure all the validaiton is correct.
+*
+*@param ---leaguecode--- league code.
+*@param ---managername---manager name.
+*@param ---managerphone--- manager phone number.
+*@param ---manageremail---manager email.
+*@param ---maxteammembers--- max team members.
+*@param ---minmemberage---min team members.
+*@param ---maxmemberage--- max member age.
+*@param ---minmemberage--- min member age.
+*/
 function validateForm(leaguesSelect)
 { 
     let errMsg = [];
@@ -138,6 +159,10 @@ function validateForm(leaguesSelect)
         errMsg[errMsg.length] = "Max Member Age is required";
     }
     
+    if ($("#minmemberage").val().trim() > ($("#maxmemberage").val().trim()))
+    {
+      errMsg[errMsg.length] = "Min age can not be larger than Max Age";
+    }
     for (let i = 0; i < leaguesSelect.length; i++) 
     {
       if ($("#leaguecode option:selected").val() == leaguesSelect[i].Code)
@@ -158,6 +183,7 @@ function validateForm(leaguesSelect)
     for(let i=0; i < errMsg.length; i++)
     {
         $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
+        $('.modal').find(".close").click();
     }
     return false;
 }
