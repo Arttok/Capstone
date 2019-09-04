@@ -15,8 +15,7 @@ $(document).ready(function() {
 function modalShow ()
 {
     // Get the modal
-    $("#maxteammembers")
-    var modal = $("#myModal");
+    var modal = document.getElementById("myModal");
 
     // Get the image and insert it inside the modal - use its "alt" text as a caption
     var imgA = $("#graphA");
@@ -24,24 +23,24 @@ function modalShow ()
     var imgC = $("#graphC");
     var modalImg = $("#img01");
     var captionText = $("#caption");
-    imgA.onclick = function()
+    imgA.click(function()
     {
         modal.style.display = "block";
-        modalImg.src = "images/eSportGraphAlrg.jpg";
-        captionText.innerHTML = this.alt;
-    }
-    imgB.onclick = function()
+        modalImg.attr("src", "images/eSportGraphAlrg.jpg");
+        captionText.html(this.alt);
+    })
+    imgB.click(function()
     {
         modal.style.display = "block";
-        modalImg.src = "images/eSportGraphBlrg.jpg";
-        captionText.innerHTML = this.alt;
-    }
-    imgC.onclick = function()
+        modalImg.attr("src", "images/eSportGraphBlrg.jpg");
+        captionText.html(this.alt);
+    })
+    imgC.click(function()
     {
         modal.style.display = "block";
-        modalImg.src = "images/eSportGraphClrg.jpg";
-        captionText.innerHTML = this.alt;
-    }
+        modalImg.attr("src", "images/eSportGraphClrg.jpg");
+        captionText.html(this.alt);
+    })
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
