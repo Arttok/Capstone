@@ -128,37 +128,37 @@ function showGenderOptions(objs)
 function validateForm(objs)
 { 
     let errMsg = [];
-    if ($("#membername").val().trim() == "")//validation for title
+    if ($("#membername").val().trim() == "")//validation for member name
     {
         errMsg[errMsg.length] = "Player Name is required";
     }
-    if ($("#contactname").val().trim() == "")//validation for title
+    if ($("#contactname").val().trim() == "")//validation for contact name
     {
         errMsg[errMsg.length] = "Player Contact Name is required.";
     }
-    if ($("#age").val().trim() == "") //validation for location
+    if ($("#age").val().trim() == "") //validation for age
     {
         errMsg[errMsg.length] = "Age is required";
     }
 
-    if ($("#age").val().trim() < objs.MinMemberAge || $("#age").val().trim() > objs.MaxMemberAge)
+    if ($("#age").val().trim() < objs.MinMemberAge || $("#age").val().trim() > objs.MaxMemberAge) //validaiton for min and maxe age.
     {
         errMsg[errMsg.length] = "Age needs to be between: " + objs.MinMemberAge + " and " + objs.MaxMemberAge;
     }
     let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    if (email.test($("#email").val()) == false) //validation for start & end date.
+    if (email.test($("#email").val()) == false) //validation for email.
     {
         errMsg[errMsg.length] = "Player Email must be valid";
     }
-    if ($("#gender").val().trim() == "") //validation for Meets
+    if ($("#gender").val().trim() == "") //validation for gender
     {
         errMsg[errMsg.length] = "Gender is required.";
     }
-    if ($("#phone").val().trim() == "") //validation for Meets
+    if ($("#phone").val().trim() == "") //validation for phone
     {
         errMsg[errMsg.length] = "Player Phone Number is required";
     }
-    if ($("#region").val().trim() == "") //validation for Meets
+    if ($("#region").val().trim() == "") //validation for region
     {
         errMsg[errMsg.length] = "Player Region is required";
     }
