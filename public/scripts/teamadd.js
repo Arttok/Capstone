@@ -158,6 +158,7 @@ function validateForm(leaguesSelect)
     for(let i=0; i < errMsg.length; i++)
     {
         $("<li>" + errMsg[i] + "</li>").appendTo($("#ulMsg"));
+        $('.modal').find(".close").click();
     }
     return false;
 }

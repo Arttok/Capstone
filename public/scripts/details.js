@@ -31,6 +31,7 @@ $(function()
     objs = teams;
     showPlayers(objs);
     createMngrTable(objs);
+    $("#teamgender").val(objs.TeamGender).change();
 
     if (objs.MaxTeamMembers <= objs.Members.length)
     {
