@@ -321,6 +321,11 @@ function validateForm(leaguesSelect, objs)
       {
         errMsg[errMsg.length] = "There is a conflict between player: " + objs.Members[i].MemberName + " gender and the new team gender of: " + $("#teamgender").val();
       }
+
+      if ($("#minmemberage").val().trim() > objs.Members[i].Age || $("#maxmemberage").val().trim() < objs.Members[i].Age)
+      {
+        errMsg[errMsg.length] = "Invalde Team Age due to player age.";
+      }
     }
     if (errMsg.length == 0)
     {

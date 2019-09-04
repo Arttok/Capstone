@@ -27,11 +27,10 @@ $(function()
         $("#region").val(objs.Members[player].Region);
 
         playerNum = objs.Members[player].MemberId;
-    });
 
-    $("#update").click(function() 
+        $("#update").click(function() 
         {
-          let isok = validateForm();
+          let isok = validateForm(objs);
           if (isok == false)
             {
               return false;
@@ -47,6 +46,7 @@ $(function()
                 }
             });
         })
+    });
 
         $("#delete").click(function() 
         {
@@ -82,7 +82,7 @@ $(function()
 *@param ---maxmemberage--- max member age.
 *@param ---minmemberage--- min member age.
 */
-function validateForm()
+function validateForm(objs)
 { 
     let errMsg = [];
     if ($("#membername").val().trim() == "")//validation for title
@@ -97,6 +97,12 @@ function validateForm()
     {
         errMsg[errMsg.length] = "Age is required";
     }
+
+    if ($("#age").val().trim() < objs.MinMemberAge || $("#age").val().trim() > objs.MaxMemberAge)
+    {
+        errMsg[errMsg.length] = "Age needs to be between: " + objs.MinMemberAge + " and " + objs.MaxMemberAge;
+    }
+    
     let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (email.test($("#email").val()) == false) //validation for start & end date.
     {
