@@ -55,12 +55,9 @@ Information about the different leagues, with video links.
 # Page Highlights
 ### Home Page
 ![HomePage](public/images/homepage.jpg?raw=true "Home Page")
-![Service](public/images/homepage.jpg?raw=true "Service Page")
 
 ### Add Team Page
 ![Add Team](public/images/addTeam.jpg?raw=true "Add Team Page")
-![Service](public/images/addTeam.jpg?raw=true "Service Page")
 
 ### Team Details Page
 ![Team Details](public/images/teamdetails.jpg?raw=true "Team Details Page")
-![Service](public/images/teamdetails.jpg?raw=true "Service Page")
