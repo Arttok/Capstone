@@ -3,17 +3,27 @@ $(document).ready(function() {
         modalShow();
 });
 
+/*This function shows the modal.
+*
+*@param ---leaguecode--- league code.
+*@param ---graphA---graph A.
+*@param ---graphB--- graph B
+*@param ---graphC---graph C
+*@param ---img01--- modal image..
+*@param ---caption---modal caption.
+*/
 function modalShow ()
 {
     // Get the modal
-    var modal = document.getElementById("myModal");
+    $("#maxteammembers")
+    var modal = $("#myModal");
 
     // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var imgA = document.getElementById("graphA");
-    var imgB = document.getElementById("graphB");
-    var imgC = document.getElementById("graphC");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
+    var imgA = $("#graphA");
+    var imgB = $("#graphB");
+    var imgC = $("#graphC");
+    var modalImg = $("#img01");
+    var captionText = $("#caption");
     imgA.onclick = function()
     {
         modal.style.display = "block";

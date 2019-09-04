@@ -66,7 +66,17 @@ $(function()
         })
 })
 
-
+/*This function checks to make sure all the validaiton is correct.
+*
+*@param ---leaguecode--- league code.
+*@param ---managername---manager name.
+*@param ---managerphone--- manager phone number.
+*@param ---manageremail---manager email.
+*@param ---maxteammembers--- max team members.
+*@param ---minmemberage---min team members.
+*@param ---maxmemberage--- max member age.
+*@param ---minmemberage--- min member age.
+*/
 function validateForm()
 { 
     let errMsg = [];

@@ -39,7 +39,7 @@ $(function()
             // parameter named teams
             // take a few minutes to examine the attached .json file
             objs = teams;
-            populateTableInfo(objs, tableHead, leagueSelect);
+            populateTableInfo(objs, tableHead);
         })
     })
 });
@@ -47,11 +47,8 @@ $(function()
 /*This function gets the drop down informaiton on the page.
  *
  *
- *@param ---classSelector--- is the classSelector field..
- *@param ---classList--- is the class table.
- *@param ---detailtbl--- is the table for the class information.
- *@param ---option:selected--- gets the selected option.
- *@param ---objs--- is the object array.
+ *@param ---leagueSelect--- is the classSelector field.
+ *@param ---leagueDropdown--- is the dropdown field.
  */
 function populateDropDownInfo(leagueSelect) 
 {
@@ -67,7 +64,11 @@ function populateDropDownInfo(leagueSelect)
     }
 }
 
-
+/*This function populates the dropdown info with the different regions.
+*
+*@param ---regionsSelect--- regions.
+*@param ---leagueDropdown---manager name.
+*/
 function populateDropDownRegion(regionsSelect) 
 {
   for (var i = 0; i < regionsSelect.length; i++) 
@@ -86,15 +87,13 @@ function populateDropDownRegion(regionsSelect)
 
 
 
-/*This function gets the drop down informaiton on the page.
+/*This function populates the dropdown info with the rest of the leagues..
  *
  *
- *@param ---thead--- table head.
- *@param ---trow--- table row.
- *@param ---tBody---table body.
- *@param ---catatext--- text of dropdown, that is selected.
+ *@param ---DnD--- DO NOT PICK THIS OPTION. The DND League has been disbanded, never to return.
+ *@param ---teamsList--- list options.
  */
-function populateTableInfo(objs, tableHead, leagueSelect) {
+function populateTableInfo(objs, tableHead) {
     $("#teamsList").empty();
     let thead = $("<thead>");
     $("#teamsList").append(thead);

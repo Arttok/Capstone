@@ -36,11 +36,8 @@ $(function()
     if (objs.MaxTeamMembers <= objs.Members.length)
     {
       $("#addplayer").hide();
+      $("#teamfull").html("Team is Full. Adding players is disallowed.")
     }
-
-    console.log(objs.MaxTeamMembers)
-    console.log(objs.Members.length)
-      //"courses.html?" + "instr=" + $.urlParam('instr') );
 
     $.getJSON("/api/leagues", function(leagues) 
     {
@@ -62,6 +59,9 @@ $(function()
 
       $.getJSON("/api/regions", function(region) 
       {
+        // the returned region is available in an "already parsed"
+        // parameter named region
+        // take a few minutes to examine the attached .json file
         regionSelect = region
         createLeagueTable(regionSelect, leaguesSelect);
         $("#maxteammembers").val(objs.MaxTeamMembers);
@@ -118,7 +118,16 @@ $(function()
   })
 })
 
-
+/*This function shows the team informaiton in the details table.
+*
+*@param ---teamid--- Team ID.
+*@param ---teamname---Team Name.
+*@param ---managername--- Manager Name
+*@param ---managerphone---Manager Phone
+*@param ---minmemberage--- Min member Age.
+*@param ---teamgender---Team Gender.
+*@param ---maxmemberage--- Max member Age.
+*/
 function createMngrTable(objs)
 {
   $("#teamid").val(objs.TeamId);
@@ -136,7 +145,11 @@ function createMngrTable(objs)
   )
 }
 
-
+/*This function populates the leagues.
+*
+*@param ---leaguecode--- League dropdown option.
+*@param ---region---Region option.
+*/
 function createLeagueTable(regionSelect, leaguesSelect)
 {
   $("#region").empty();
@@ -237,7 +250,17 @@ function showPlayers(objs)
     }
 }
 
-
+/*This function checks to make sure all the validaiton is correct.
+*
+*@param ---leaguecode--- league code.
+*@param ---managername---manager name.
+*@param ---managerphone--- manager phone number.
+*@param ---manageremail---manager email.
+*@param ---maxteammembers--- max team members.
+*@param ---minmemberage---min team members.
+*@param ---maxmemberage--- max member age.
+*@param ---minmemberage--- min member age.
+*/
 function validateForm(leaguesSelect, objs)
 { 
     let errMsg = [];
