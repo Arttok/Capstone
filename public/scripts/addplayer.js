@@ -66,9 +66,6 @@ function showRegionOptions(objs, regionSelect, leaguesSelect)
 {
     if (objs.Region == "All")
     {
-        $("#region").append(
-          "<option value='All'>" + "All" + "</option>"
-        )
         for (let i = 0; i < regionSelect.length; i++)
         {
           if (leaguesSelect[i].Region == regionSelect[i].Code)

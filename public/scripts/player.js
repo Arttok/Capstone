@@ -25,6 +25,7 @@ $(function()
         $("#gender").val(objs.Members[player].Gender);
         $("#phone").val(objs.Members[player].Phone);
         $("#region").val(objs.Members[player].Region);
+        console.log(objs.Members[player].Region)
 
         playerNum = objs.Members[player].MemberId;
 
