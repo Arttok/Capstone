@@ -86,12 +86,12 @@ $(function()
       {
         url: "/api/teams",
         data: $("#teamInfo").serialize(),
-        method: 'PUT'
+        method: 'POST',
+          success: function() {
+          alert("Team has been updated");
+          document.location.href = "teamsearch.html";
+          }
       })
-      .done(function (){
-        alert("Team has been updated");
-        document.location.href = "teamsearch.html";
-      });
   })
 
   $('#myModal').on('shown.bs.modal', function () {
