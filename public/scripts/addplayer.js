@@ -33,8 +33,6 @@ $(function()
 
                 $("#addplayer").click(function() 
                 {
-                console.log(objs)
-                console.log(team)
                 let isok = validateForm(objs);
                 if (isok == false)
                     {
