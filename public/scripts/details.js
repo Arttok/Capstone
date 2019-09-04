@@ -31,6 +31,14 @@ $(function()
     objs = teams;
     showPlayers(objs);
     createMngrTable(objs);
+
+    if (objs.MaxTeamMembers <= objs.Members.length)
+    {
+      $("#addplayer").hide();
+    }
+
+    console.log(objs.MaxTeamMembers)
+    console.log(objs.Members.length)
       //"courses.html?" + "instr=" + $.urlParam('instr') );
 
     $.getJSON("/api/leagues", function(leagues) 
@@ -68,21 +76,24 @@ $(function()
 
   $("#update").click(function() 
   {
-    let isok = validateForm(leaguesSelect);
+    alert("Update")
+    let isok = validateForm(leaguesSelect, objs);
       if (isok == false)
       {
         return false;
       }
+      alert("Done validaiton")
+      console.log(TeamId)
       $.ajax(
       {
         url: "/api/teams",
-        data: "teamid=" + TeamId + "&" + $("#teamInfo").serialize(),
-        method: 'PUT',
-        success: function() {
-          alert("Team has been updated");
-          document.location.href = "teamsearch.html";
-      }
-    });
+        data: $("#teamInfo").serialize(),
+        method: 'PUT'
+      })
+      .done(function (){
+        alert("Team has been updated");
+        document.location.href = "teamsearch.html";
+      });
   })
 
   $('#myModal').on('shown.bs.modal', function () {
@@ -91,6 +102,7 @@ $(function()
 
   $("#confirm").click(function() 
   {
+    console.log(TeamId)
     $.ajax(
       {
         url: "/api/teams/" + TeamId,
@@ -108,6 +120,7 @@ $(function()
 
 function createMngrTable(objs)
 {
+  $("#teamid").val(objs.TeamId);
   $("#teamname").val(objs.TeamName);
   $("#managername").val(objs.ManagerName);
   $("#managerphone").val(objs.ManagerPhone);
@@ -115,6 +128,11 @@ function createMngrTable(objs)
   $("#minmemberage").val(objs.MinMemberAge);
   $("#teamgender").val(objs.TeamGender);
   $("#maxmemberage").val(objs.MaxMemberAge);
+  $("#teamgender").append(
+    "<option value=" + "Male" + ">" + "Male" + "</option>" +
+    "<option value=" + "Female" + ">" + "Female" + "</option>" + 
+    "<option value=" + "Any" + ">" + "Any" + "</option>"
+  )
 }
 
 
@@ -197,9 +215,9 @@ function showPlayers(objs)
       for (let i = 0; i < objs.Members.length; i++) 
       {
         let markup =
-        "<tr><td name=membername" + ">" +
+        "<tr><td class=membername" + ">" +
         objs.Members[i].MemberName +
-        "</td><td name=email>" +
+        "</td><td class=email>" +
         objs.Members[i].Email +
         "</td><td class=age>" +
         objs.Members[i].Age +
@@ -219,7 +237,7 @@ function showPlayers(objs)
 }
 
 
-function validateForm(leaguesSelect)
+function validateForm(leaguesSelect, objs)
 { 
     let errMsg = [];
     if ($("#leaguecode").val().trim() == "")//validation for title
@@ -264,6 +282,22 @@ function validateForm(leaguesSelect)
       }
     }
 
+    if (($("#maxteammembers").val()) < objs.Members.length)
+    {
+      errMsg[errMsg.length] = "Max Team Members of " + $("#maxteammembers").val() + " is less than the current number of players: " + objs.Members.length;
+    }
+
+
+    for (let i=0; i < objs.Members.length; i++)
+    {
+      if ($("#teamgender").val() == "Any")
+      {
+        console.log("make change, it is fine.")
+      } else if ($("#teamgender").val() != objs.Members[i].Gender )
+      {
+        errMsg[errMsg.length] = "There is a conflict between player: " + objs.Members[i].MemberName + " gender and the new team gender of: " + $("#teamgender").val();
+      }
+    }
     if (errMsg.length == 0)
     {
         return true;

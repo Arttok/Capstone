@@ -24,8 +24,6 @@ function modalShow ()
     var tournK = $('#tournK');
     var tournL = $('#tournL');
     
-    
-    var captionText = document.getElementById("caption");
     tournA.on("click", function()
     {
         modalHeader.innerHTML = "WoW Arena 2018";
