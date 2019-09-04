@@ -123,7 +123,7 @@ function isThereAnyGenderChangeConflicts(newTeamGender, team)
 function isThereAnyRegionChangeConflicts(newTeamRegion, team)
 {
     console.log(newTeamRegion)
-    if (newTeamRegion == "Any")
+    if (newTeamRegion == "All")
     {
         // No conflict w/ team switching to coed
         return false;  

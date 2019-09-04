@@ -66,9 +66,11 @@ $(function()
         createLeagueTable(regionSelect, leaguesSelect);
         $("#maxteammembers").val(objs.MaxTeamMembers);
         $("#leaguecode").val(objs.League).change();
+        createLeagueTable(regionSelect, leaguesSelect);
 
         $("#leaguecode").change(function()
         {
+          $("#region").val(objs.League).change();
           createLeagueTable(regionSelect, leaguesSelect);
         }); 
       })
@@ -77,6 +79,7 @@ $(function()
 
   $("#update").click(function() 
   {
+    
     let isok = validateForm(leaguesSelect, objs);
       if (isok == false)
       {
